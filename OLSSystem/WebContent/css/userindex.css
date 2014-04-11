@@ -1,0 +1,268 @@
+@CHARSET "UTF-8";
+body {
+margin: 0;
+	padding: 0;
+	min-width: 990px;
+	font: Arial, Helvetica, sans-serif;
+	color: #333;
+	background: #ccFFCC;
+}
+
+img {
+	border-style: none;
+}
+
+hr{
+margin-left: 0px;
+size:500px;
+}
+
+a {
+	color: #001058;
+}
+. a:hover {
+text-decoration: none;
+}
+color: #ffffff;
+background-color: #555555;
+border: 1px solid #555555;
+padding: 3px;
+vertical-align: top;
+text-align: left;
+
+
+
+
+
+#page {
+	width: 100%;
+	overflow: hidden;
+	
+}
+
+
+/*wrapper---------------------------------------*/
+#wrapper {
+    margin: 0 auto;
+	width: 976px;
+	background: #FFCC00;
+	box-shadow: 5px 5px 5px #888888;
+}
+
+
+/*header----------------------------------------*/
+#header {
+    
+	margin: 0 -9999px 22px;
+	padding: 0 9999px 10px;
+	border-bottom: 7px solid #fff;
+	
+}
+
+#title h1{
+margin: 10px 10px 10px 10px;
+padding: 5px 5px 5px 5px;
+color: #FFFFFF;
+background:#330033;
+
+}
+
+
+
+#user_nav{
+margin: 0 -9999px 22px;
+	padding: 0 9999px 10px;
+}
+/*Nav menu*/
+#nav {
+  border: none;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  font: 67.5% 'Lucida Sans Unicode', 'Bitstream Vera Sans', 'Trebuchet Unicode MS', 'Lucida Grande', Verdana, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  width: 100%;
+}
+#nav ul {
+  background:#330033; 
+  
+  height: 35px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#nav li {
+  color: #cccccc;
+  float: left;
+  padding: 0px;
+}
+
+#nav li span {
+
+  padding: 0px 10px 0px 15px;
+}
+#nav li a {
+  background: #330033 url('../img/seperator.gif') bottom right no-repeat;
+  display: block;
+  font-weight: normal;
+  line-height: 35px;
+  margin: 0px;
+  padding: 0px 25px;
+  text-align: center;
+  text-decoration: none;
+}
+#nav > ul > li > a {
+  color: #cccccc;
+}
+#nav ul ul a {
+  color: #cccccc;
+}
+#nav li > a:hover,
+#nav ul li:hover > a {
+  background: #FF9900 url('../img/hover.png') bottom center no-repeat;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+#nav li ul {
+  background: #330033;
+  display: none;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  position: absolute;
+  width: 225px;
+  z-index: 200;
+  /*top:1em;
+	/*left:0;*/
+
+}
+#nav li:hover ul {
+  display: block;
+}
+#nav li li {
+  background: url('../img/sub_sep.gif') bottom left no-repeat;
+  display: block;
+  float: none;
+  margin: 0px;
+  padding: 0px;
+  width: 225px;
+}
+#nav li:hover li a {
+  background: none;
+}
+#nav li ul a {
+  display: block;
+  height: 35px;
+  font-size: 12px;
+  font-style: normal;
+  margin: 0px;
+  padding: 0px 10px 0px 15px;
+  text-align: left;
+}
+#nav li ul a:hover,
+#nav li ul li:hover > a {
+  background: #FF9900 url('../img/hover_sub.png') center left no-repeat;
+  border: 0px;
+  color: #ffffff;
+  text-decoration: none;
+}
+#nav p {
+  clear: left;
+}
+#title{
+  border: none;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  font: 67.5% 'Lucida Sans Unicode', 'Bitstream Vera Sans', 'Trebuchet Unicode MS', 'Lucida Grande', Verdana, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  width: 100%;
+}
+
+
+
+/*content---------------------------------------------------*/
+#content{
+	overflow: hidden;
+	margin: 5px 0px 0px 0px;
+	padding: 0 0 0 20px;
+	background-color:white;
+	background-position: center bottom;
+	margin-bottom: 6px;
+	min-height:400px;
+}
+
+/*left coulmn--------------------------------------------------------*/
+#left{
+float:left;
+margin: 10px 10px 10px 10px;
+padding: 5px 5px 5px 5px;
+width:70%;
+}
+
+#edit{
+margin: 10px 10px 10px 10px;
+padding: 5px 5px 5px 5px;
+}
+
+
+#c_table{
+display: table;
+margin:5px 5px 5px 5px
+border:1px solid black;
+border-collapse: collapse;
+border-color: grey;
+width:90%
+}
+
+#c_table th{
+font-size: 1.0em;
+text-align: left;
+padding-top: 5px;
+padding-bottom: 4px;
+background-color: #330033;
+color: #fff;
+border-color: grey;
+}
+
+#c_table td,th{
+font-size: 1.2em;
+border: 1px solid #330033;
+padding: 3px 7px 2px 7px;
+}
+
+#c_table a{
+font-size: 1.0em;
+border-radius: 3px 3px 3px 3px;
+text-decoration: none;
+padding: 3px 3px 3px 3px;
+}
+#c_table a:hover{
+  text-decoration: none;
+}
+
+
+
+#right{
+float: left;
+width:25%;
+}
+#right-coulmn{
+margin-right:5px;
+height:100%;
+
+}
+
+#right-coulmn h1{
+background-color: #330033;
+width:95%;
+border-radius: 5px 5px 0 0;
+color: #fff;
+font-size: 14px;
+padding: 8px;
+text-align: center;
+
+}

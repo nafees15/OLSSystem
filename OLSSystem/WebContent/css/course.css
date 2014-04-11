@@ -1,0 +1,158 @@
+@CHARSET "UTF-8";
+body {
+margin: 0;
+	padding: 0;
+	min-width: 990px;
+	font: Arial, Helvetica, sans-serif;
+	color: #333;
+	background: #ccFFCC;
+}
+
+img {
+	border-style: none;
+}
+
+hr{
+margin-left: 0px;
+size:500px;
+}
+
+a {
+	color: #001058;
+}
+. a:hover {
+text-decoration: none;
+}
+
+#page {
+	width: 100%;
+	overflow: hidden;
+	
+}
+
+
+/*wrapper---------------------------------------*/
+#wrapper {
+    margin: 0 auto;
+	width: 976px;
+	background: #FFCC00;
+	box-shadow: 5px 5px 5px #888888;
+}
+
+
+/*header----------------------------------------*/
+#header {
+    
+	margin: 0 -9999px 22px;
+	padding: 0 9999px 10px;
+	border-bottom: 7px solid #fff;
+	
+}
+
+#title{
+  border: none;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  font: 67.5% 'Lucida Sans Unicode', 'Bitstream Vera Sans', 'Trebuchet Unicode MS', 'Lucida Grande', Verdana, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  width: 100%;
+}
+#title h1{
+margin: 10px 10px 10px 10px;
+padding: 5px 5px 5px 5px;
+color: #FFFFFF;
+background:#330033;
+
+}
+
+#content{
+	overflow: hidden;
+	margin: 5px 0px 0px 0px;
+	padding: 0 0 0 20px;
+	background-color:white;
+	background-position: center bottom;
+	margin-bottom: 6px;
+	min-height:400px;
+}
+
+#headline{
+    overflow: hidden;
+	margin: 0px 0px 0px 20px;
+	color:#1371b2;
+}
+
+#courseList{
+height=100%;
+color:#1371b2;
+margin: 2px 2px 2px 20px;
+}
+#droplist{
+margin: 0px 0px 0px 0px;
+padding: 5px 5px 5px 5px ;
+border: 1px solid #F0F0F0;
+height=100%;
+ width: 803px;
+}
+
+#droplist ul {
+  list-style-type: none;
+  font-size:large;  
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+  width: 800px;
+  
+}
+#droplist a {
+  text-decoration: none;
+  display: block;
+  background: #cc33cc url('img/hover_sub.png') center left no-repeat;
+  padding: 3px 12px 3px 7px;
+  color: #fff;
+  border: 1px solid #FFFFFF;
+}
+#droplist a:active {
+  padding: 2px 13px 4px 7px;
+  background-color: red;
+  color: #eee;
+  border: 1px solid #333;
+}
+#droplist a:hover{
+background: #FF9900 url('img/hover.png') bottom center no-repeat;
+  color: #FFFf;
+  text-decoration: none;
+}
+
+
+#dropbox {
+margin 5px 5px 5px 5px;
+padding 0;
+border-radius: 2px 2px 2px 2px;
+box-shadow: 2px 2px 2px #888888;
+background-color:#F8F8F8;
+}
+
+
+
+#dropbox a {
+
+  text-decoration: none;
+  background : white;
+  color:red;
+  width:200px;
+}
+
+#dropbox a:active {
+  
+  background-color: red;
+  color: #red;
+  
+
+}
+
+#dropbox a:hover{
+color: red;
+background-color:white;
+  text-decoration: none;
+}

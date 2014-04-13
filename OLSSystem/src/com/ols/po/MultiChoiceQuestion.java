@@ -2,6 +2,11 @@ package com.ols.po;
 
 import java.util.List;
 
+/**
+ * @author adil alim
+ *
+ */
+
 public class MultiChoiceQuestion extends Question {
 
 	private static final long serialVersionUID = 1L;
@@ -13,7 +18,12 @@ public class MultiChoiceQuestion extends Question {
 	private int point;
 	private String hints;
 	
+	private final int type=MULTI_CHOICE_TYPE;
 	
+	
+	public int getType() {
+		return type;
+	}
 	public String getQuestionID() {
 		return QuestionID;
 	}

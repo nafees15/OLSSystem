@@ -2,6 +2,10 @@ package com.ols.po;
 
 import java.io.Serializable;
 
+/**
+ * @author adil alim
+ *
+ */
 public class Course implements Serializable{
 	
 		public Course(String courseID, String courseName, String openSemester,

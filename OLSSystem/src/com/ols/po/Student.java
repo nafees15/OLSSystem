@@ -3,6 +3,10 @@ package com.ols.po;
 import java.io.Serializable;
 import java.sql.Date;
 
+/**
+ * @author adil alim
+ *
+ */
 
 public class Student implements Serializable {
 	

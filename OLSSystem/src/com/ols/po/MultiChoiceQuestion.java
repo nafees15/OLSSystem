@@ -12,8 +12,8 @@ public class MultiChoiceQuestion extends Question {
 	private static final long serialVersionUID = 1L;
 	
 	private String QuestionID;
-	private String QuestionContent;
-	private List<String> mcOptions;
+	private String content;
+	private List<String> option;
 	private String correctAnswer;
 	private int point;
 	private String hints;
@@ -31,16 +31,16 @@ public class MultiChoiceQuestion extends Question {
 		QuestionID = questionID;
 	}
 	public String getQuestionContent() {
-		return QuestionContent;
+		return content;
 	}
 	public void setQuestionContent(String questionContent) {
-		QuestionContent = questionContent;
+		content = questionContent;
 	}
 	public List<String> getMcOptions() {
-		return mcOptions;
+		return option;
 	}
 	public void setMcOptions(List<String> mcOptions) {
-		this.mcOptions = mcOptions;
+		this.option = mcOptions;
 	}
 	public String getCorrectAnswer() {
 		return correctAnswer;

@@ -14,7 +14,7 @@ public class FillBlankQuestion extends Question {
 	private String QuestionID;
 	private List<String> content;
 	private List<String> option;
-	private List<Integer> correct;
+	private List<String> correctAnswer;
 	private String hints;
 	
 	private final int type=FILL_BLANK_TYPE;
@@ -39,13 +39,7 @@ public class FillBlankQuestion extends Question {
 	public void setOption(List<String> option) {
 		this.option = option;
 	}
-	public List<Integer> getCorrect() {
-		return correct;
-	}
-	public void setCorrect(List<Integer> correct) {
-		this.correct = correct;
-	}
-
+	
 	public String getHints() {
 		return hints;
 	}
@@ -55,5 +49,11 @@ public class FillBlankQuestion extends Question {
 	
 	public int getType() {
 		return type;
+	}
+	public List<String> getCorrectAnswer() {
+		return correctAnswer;
+	}
+	public void setCorrectAnswer(List<String> correctAnswer) {
+		this.correctAnswer = correctAnswer;
 	}
 }

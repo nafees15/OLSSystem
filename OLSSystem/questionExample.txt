@@ -1,0 +1,22 @@
+MultiChoiceQuestion:
+1.What sampling technique is being used in this scenario?
+A.SAT
+B.DDO
+C.SDE
+D.FAF
+E.GFW
+
+database-->
+content="What sampling technique is being used in this scenario?"
+option="SAT#DDO#SDE#FAF#GFW"
+correct="A,E"
+Hints="...."
+
+FillBlankQuestion:
+Within each county, claims of[12,34,15]male and [14,15,17] female patients are randomly selected?
+
+database--->
+content="Within each county, claims of#male and#female patients are randomly selected?"
+option="[12,34,15]# [14,15,17] "
+correctAnswer="2,3"
+hints="....."

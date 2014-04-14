@@ -14,12 +14,13 @@ public class Teacher implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String TeacherID;
-	private String sex;
+	private String Sex;
 	private String FirstName;
 	private String LastName;
-	private Date BOD;
+	private Date DOB;
 	private String Email;
 	private String PhoneNumber;
+	private String Password;
 	
 	
 	public String getTeacherID() {
@@ -29,10 +30,10 @@ public class Teacher implements Serializable {
 		TeacherID = teacherID;
 	}
 	public String getSex() {
-		return sex;
+		return Sex;
 	}
 	public void setSex(String sex) {
-		this.sex = sex;
+		this.Sex = sex;
 	}
 	public String getFirstName() {
 		return FirstName;
@@ -46,11 +47,11 @@ public class Teacher implements Serializable {
 	public void setLastName(String lastName) {
 		LastName = lastName;
 	}
-	public Date getBOD() {
-		return BOD;
+	public Date getDOB() {
+		return DOB;
 	}
-	public void setBOD(Date bOD) {
-		BOD = bOD;
+	public void setDOB(Date dob) {
+		DOB = dob;
 	}
 	public String getEmail() {
 		return Email;
@@ -63,6 +64,12 @@ public class Teacher implements Serializable {
 	}
 	public void setPhoneNumber(String phoneNumber) {
 		PhoneNumber = phoneNumber;
+	}
+	public String getPassword() {
+		return Password;
+	}
+	public void setPassword(String password) {
+		Password = password;
 	}
 	
 }

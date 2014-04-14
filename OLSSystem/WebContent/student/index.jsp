@@ -13,6 +13,7 @@
 </script>
 </head>
 <body>
+<% %>
 <div id="page">
 <div id="wrapper">
 		<div id="header">
@@ -21,7 +22,7 @@
 			<div id="user_nav">
 					<div id='nav'>
 					<ul>
-					   <li><span>[Tiger,Alex]>></span></li>
+					   <li><span>[teacher.]>></span></li>
 					   <li class='active'><a href='../index.jsp'><span>Home</span></a></li>
 					   <li class='active'><a href='index.jsp'><span>Course List</span></a></li>
 					   <li class='active'><a href='index.jsp'><span>Serch Course</span></a></li>
@@ -44,7 +45,7 @@
 				<tr><a href="quizlist.jsp">
 				  <td><a href="quizlist.jsp">Mat108S2011</a></td>
 				  <td>Math Reasearch</td></a>
-				  <td> <a href=""><img alt="as" src="..\img\delete.png"></a></td>
+				  <td> <a href="deletecourseaction${courseID} }"><img alt="as" src="..\img\delete.png"></a></td>
 				  </tr>				
 				</table></div>
 			</div>

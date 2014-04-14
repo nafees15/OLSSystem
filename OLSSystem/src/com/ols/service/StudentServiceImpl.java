@@ -66,4 +66,10 @@ public class StudentServiceImpl implements StudentService{
 		
 	}
 
+	@Override
+	public void registerCourse(String CourseID) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

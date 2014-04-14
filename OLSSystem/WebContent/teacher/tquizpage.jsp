@@ -32,6 +32,9 @@ xmlhttp.send();
 </script>
 </head>
 <body>
+<%
+
+%>
 <div id="page">
 <div id="wrapper">
 		<div id="header">

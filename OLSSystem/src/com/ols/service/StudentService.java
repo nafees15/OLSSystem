@@ -14,4 +14,5 @@ public interface StudentService {
 	public Student getStudentInfo(String StudentID);
 	public List<Course> getResisteredCourseList(String studentID);
 	public void setStudentResult(String StudentID);
+	public void registerCourse(String CourseID);
 }

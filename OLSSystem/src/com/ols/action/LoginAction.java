@@ -47,8 +47,9 @@ public class LoginAction extends HttpServlet{
 		if("student".equals(roleSelect)){
 			if(studentServiceImpl.allowLogin(username, password)){
 				student = studentServiceImpl.getStudentInfo(username);
+				System.out.println("login success check:"+student.getFirstName()+"---"+student.getLastName());
 				httpSession.setAttribute("student", student);
-				url="student/index.jsp";
+				url="/student/index.jsp";
 			}else{
 			    String errorMsg = "there is error of username/password.";
 			    httpSession.setAttribute("ErrMsg", errorMsg);

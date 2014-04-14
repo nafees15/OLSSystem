@@ -195,6 +195,16 @@ margin: 0 -9999px 22px;
 	min-height:400px;
 }
 
+#button{
+    background: #330033;	
+	border-radius: 3px;
+	color: #fff;
+	float: right;
+	font-weight: bold;
+	margin-top: 20px;
+	padding: 5px 10px;
+}
+
 /*left coulmn--------------------------------------------------------*/
 #left{
 float:left;

@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Teacher</title>
-<link media="all" rel="stylesheet" type="text/css" href="../css/userindex.css">
+<link media="all" rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/userindex.css">
 <link rel="shortcut icon" href="favicon.ico" >
 <link rel="icon" type="image/gif" href="icon.gif" >
 <script type="text/javascript">

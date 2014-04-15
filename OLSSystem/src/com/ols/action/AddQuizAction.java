@@ -6,8 +6,8 @@ package com.ols.action;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.Date;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
@@ -42,7 +42,13 @@ public class AddQuizAction extends HttpServlet{
 		String QuizName = request.getParameter("QuizName");
 
 		// convert string date format to Date
-		Date date = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH).parse(request.getParameter("DueTime"));
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH).parse(request.getParameter("DueTime"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Date DueTime = date;
 		float QuizFullGrade = Float.parseFloat(request.getParameter("QuizFullGrade"));
 		int TotalQuestionNumber = Integer.parseInt(request.getParameter("QuizFullGrade"));
@@ -61,7 +67,7 @@ public class AddQuizAction extends HttpServlet{
 			quiz.setQuizFullGrade(QuizFullGrade);
 			quiz.setTotalQuestionNumber(TotalQuestionNumber);
 			
-			quizServiceImpl.addQuiz(quiz);
+			quizServiceImpl.addNewQuiz(quiz);
 			arrQuiz = quizServiceImpl.getQuizByCourseID(CourseID);			
 		}
 		

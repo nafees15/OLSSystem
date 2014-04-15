@@ -123,18 +123,97 @@ public class CourseDAOImpl implements CourseDAO {
 	@Override
 	public ArrayList<Course> getCourseByTeacherID(String TeacherID) {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Course> courseList = new ArrayList<Course>();
+		String sql = "SELECT * from vi_course_teach where teacherID=?";
+		dbc = new DBConnection();
+		connection = dbc.getConnection();
+		try {
+			pstat = connection.prepareStatement(sql);
+			pstat.setString(1, TeacherID);
+			ResultSet urs = (ResultSet) pstat.executeQuery();
+			while (urs.next()) {
+				Course course = new Course();
+				course.setCourseID(urs.getString(1));
+				course.setCourseName(urs.getString(2));
+				course.setOpenSemester(urs.getString(3));
+				course.setCredit(urs.getInt(4));
+				course.setState(urs.getString(5));
+				course.setDescription(urs.getString(6));
+				courseList.add(course);
+			}
+			urs.close();
+			pstat.close();
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return courseList;
 	}
 
 	@Override
-	public ArrayList<Course> getCourseByStudentID(String StudentID) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Course> getCourseByStudentID(String studentID) {
+		/*
+		 * private String courseID; 1
+		private String courseName;2
+		private String openSemester;3
+		private int credit;4
+		private String state;5
+		private String description;6
+		*/
+		ArrayList<Course> courseList = new ArrayList<Course>();
+		String sql = "SELECT * from vi_course_register where studentID=?";
+		dbc = new DBConnection();
+		connection = dbc.getConnection();
+		try {
+			pstat = connection.prepareStatement(sql);
+			pstat.setString(1, studentID);
+			ResultSet urs = (ResultSet) pstat.executeQuery();
+			while (urs.next()) {
+				Course course = new Course();
+				course.setCourseID(urs.getString(1));
+				course.setCourseName(urs.getString(2));
+				course.setOpenSemester(urs.getString(3));
+				course.setCredit(urs.getInt(4));
+				course.setState(urs.getString(5));
+				course.setDescription(urs.getString(6));
+				courseList.add(course);
+			}
+			urs.close();
+			pstat.close();
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return courseList;
 	}
 
 	@Override
 	public Course getCourseByID(String CourseID) {
 		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from course where courseID=?";
+		Course course = new Course();
+		try {		
+			pstat = connection.prepareStatement(sql);
+			pstat.setString(1, CourseID);
+			ResultSet urs = (ResultSet) pstat.executeQuery();		
+			if (urs.next()) {
+				course.setCourseID(urs.getString(1));
+				course.setCourseName(urs.getString(2));
+				course.setOpenSemester(urs.getString(3));
+				course.setCredit(urs.getInt(4));
+				course.setState(urs.getString(5));
+				course.setDescription(urs.getString(6));
+			}	
+			urs.close();
+			pstat.close();
+			connection.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return course;
 	}
 }

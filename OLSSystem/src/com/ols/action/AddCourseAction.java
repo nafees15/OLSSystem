@@ -44,7 +44,6 @@ public class AddCourseAction extends HttpServlet {
 		ArrayList<Course> arrCourse = new ArrayList<Course>();
 		CourseServiceImpl courseService = new CourseServiceImpl(); 
 		
-		try{
 		if(teacherID == "") teacherID ="";
 		System.out.println("Teacher ID is"+ teacherID);
 		
@@ -61,9 +60,6 @@ public class AddCourseAction extends HttpServlet {
 			//arrCourse = courseService.getCourseByTeacherID(teacherID);
 		}else{
 			System.out.println("There is no course added");
-		}
-		}catch(ServletException e){
-			e.printStackTrace();
 		}
 		arrCourse=courseService.getCourseByTeacherID(teacherID);
 		httpSession.setAttribute("CourseList", arrCourse);

@@ -19,7 +19,7 @@ import com.ols.po.Teacher;
 import com.ols.po.Student;
 import com.ols.dao.StudentDAO;
 import com.ols.dao.TeacherDAO;
-import com.ols.service.CourseService;
+import com.ols.service.*;
 import com.ols.service.TeacherService;
 
 public class EditCourseAction extends HttpServlet{

@@ -5,11 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=GB18030">
 <title>Web Quiz System</title>
-<link media="all" rel="stylesheet" type="text/css" href="css/main.css">
+<link media="all" rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <link rel="shortcut icon" href="favicon.ico" >
 <link rel="icon" type="image/gif" href="icon.gif" >
 </head>
 <body>
+<%
+String errorMessage=(String)request.getAttribute("ErrMsg");
+if(errorMessage==null) errorMessage="";%>
 <div id="page">
 	<div id="wrapper">
 	    <!--header -->
@@ -101,12 +104,13 @@
 			        <fieldset>
 			
 			            <form action="loginaction" method="post">
+			            	<p style="color:red;"><%=errorMessage%></p>
 			            	<input type="radio" id="stu" name="userType" value="student" checked><label for="stu">Student</label>
 			            	<input type="radio" id="tea"name="userType" value="teacher"><label for="tea">Teacher</label>
 			
-			                <input type="text" required value="NetId" name="userID" onBlur="if(this.value=='')this.value='userID'" onFocus="if(this.value=='NetId')this.value='' "> <!-- JS because of IE support; better: placeholder="NetID" -->
+			                <input type="text" required value="UserID" name="userID" onBlur="if(this.value=='')this.value='UserID'" onFocus="if(this.value=='UserID')this.value='' "> <!-- JS because of IE support; better: placeholder="NetID" -->
 			
-			                <input type="password" required value="Password" name="password" onBlur="if(this.value=='')this.value='password'" onFocus="if(this.value=='Password')this.value='' "> <!-- JS because of IE support; better: placeholder="Password" -->
+			                <input type="password" required value="Password" name="password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' "> <!-- JS because of IE support; better: placeholder="Password" -->
 			
 			                <input type="submit" value="Login">
 			

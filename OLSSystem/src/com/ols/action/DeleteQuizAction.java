@@ -6,6 +6,7 @@ package com.ols.action;
 import java.io.IOException;
 import java.util.*;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
@@ -23,6 +24,7 @@ import com.ols.dao.StudentDAO;
 import com.ols.dao.TeacherDAO;
 import com.ols.service.QuizService;
 import com.ols.service.CourseService;
+import com.ols.service.QuizServiceImpl;
 import com.ols.service.TeacherService;
 import com.ols.service.QuizService;
 
@@ -43,7 +45,13 @@ public class DeleteQuizAction extends HttpServlet{
 		String QuizName = request.getParameter("QuizName");
 
 		// convert string date format to Date
-		Date date = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH).parse(request.getParameter("DueTime"));
+		Date date=null;
+		try {
+			date = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH).parse(request.getParameter("DueTime"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Date DueTime = date;
 		float QuizFullGrade = Float.parseFloat(request.getParameter("QuizFullGrade"));
 		int TotalQuestionNumber = Integer.parseInt(request.getParameter("QuizFullGrade"));

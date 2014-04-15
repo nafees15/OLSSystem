@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import com.ols.po.*;
 import com.ols.database.DBConnection;
+import com.ols.util.*;
 
 /**
  * @author Zeyang 100
@@ -19,10 +20,11 @@ public class StudentDAOImpl implements StudentDAO{
 	private static Connection connection;
 	private static DBConnection dbc;
 	private static PreparedStatement pstat;
+	
 	@Override
 	public Student getStudentByID(String studentID) {
 		// TODO Auto-generated method stub
-		Student student = new Student();
+		Student student = new Student();		
 		dbc = new DBConnection();
 		connection = dbc.getConnection();
 		String sql = "SELECT * from student where StudentID=?";
@@ -37,7 +39,7 @@ public class StudentDAOImpl implements StudentDAO{
 				student.setSex(urs.getString(2));
 				student.setFirstName(urs.getString(3));
 				student.setLastName(urs.getString(4));
-				student.setDOB(urs.getDate(5));
+				student.setDOB(DateFormatConvert.JavaDateToSqlDate((urs.getDate(5)));
 				student.setEmail(urs.getString(6));
 				student.setPhoneNumber(urs.getString(7));
 				student.setPassword(urs.getString(8));

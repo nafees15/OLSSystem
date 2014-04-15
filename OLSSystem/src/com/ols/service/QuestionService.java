@@ -1,21 +1,17 @@
-package com.ols.dao;
+package com.ols.service;
 
-import java.util.*;
+import java.util.ArrayList;
+
 
 import com.ols.po.*;
 
-/**
- * @author adil alim
- *
- */
-
-public interface QuestionDAO {
+public interface QuestionService {
 	public FillBlankQuestion getFillBlankQuestion(String QuestionID);
-	public FillBlankQuestion getMultiChoiceQuestion(String QuestionID);
+	public MultiChoiceQuestion getMultiChoiceQuestion(String QuestionID);
 	public ArrayList<Question> getFillBlankQuestionList(String QuizID);
 	public ArrayList<Question> getMultiChoiceQuestionList(String QuizID);	
-	public void addFillBlankQuestion(Question question);
-	public void addMultiChoiceQuestion(Question question);
+	public void addNewFillBlankQuestion(Question question);
+	public void addNewMultiChoiceQuestion(Question question);
 	public void updateFillBlankQuestion(Question question);
 	public void updateMultiChoiceQuestion(Question question);
 	public void deleteFillBlankQuestion(String QuestionID);

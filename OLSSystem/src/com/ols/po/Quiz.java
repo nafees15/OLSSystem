@@ -20,14 +20,17 @@ public class Quiz implements Serializable{
 	private float QuizFullGrade;
 	private int TotalQuestionNumber;
 	
+	public Quiz(){
+		
+	}
 	public Quiz(String quizID, String quizName, Date dueTime,
-			float quizFullGrade, int totalQuistionNumber) {
+			float quizFullGrade, int totalQuestionNumber) {
 		super();
 		QuizID = quizID;
 		QuizName = quizName;
 		DueTime = dueTime;
 		QuizFullGrade = quizFullGrade;
-		TotalQuestionNumber = totalQuistionNumber;
+		TotalQuestionNumber = totalQuestionNumber;
 	}
 	
 	public String getQuizID() {
@@ -54,11 +57,11 @@ public class Quiz implements Serializable{
 	public void setQuizFullGrade(float quizFullGrade) {
 		QuizFullGrade = quizFullGrade;
 	}
-	public int getTotalQuistionNumber() {
+	public int getTotalQuestionNumber() {
 		return TotalQuestionNumber;
 	}
-	public void setTotalQuistionNumber(int totalQuistionNumber) {
-		TotalQuestionNumber = totalQuistionNumber;
+	public void setTotalQuestionNumber(int totalQuestionNumber) {
+		TotalQuestionNumber = totalQuestionNumber;
 	}
 	
 	

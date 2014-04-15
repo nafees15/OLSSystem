@@ -1,20 +1,20 @@
-package com.ols.dao;
+package com.ols.service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.ols.po.*;
+
 /**
  * @author adil alim
  *
  */
 
-public interface CourseDAO {
+public interface CourseService {
 	public ArrayList<Course> getCourseByTeacherID(String TeacherID);
 	public ArrayList<Course> getCourseByStudentID(String StudentID);
-	public Course getCourseByID(String CourseID);
-	public void addCourse(Course course);
-	public void updateCourse(Course course);
+	public Course getCourse(String CourseID);
+	public void addNewCourse(Course course);
+	public void updateCourse(Course sourse);
 	public void deleteCourse(String CourseID);
 	
 }

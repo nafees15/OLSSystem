@@ -46,7 +46,7 @@ public class LoginAction extends HttpServlet{
 		
 		if("student".equals(roleSelect)){
 			if(studentServiceImpl.allowLogin(username, password)){
-				student = studentServiceImpl.getStudentInfo(username);
+				student = studentServiceImpl.getStudent(username);
 				System.out.println("login success check:"+student.getFirstName()+"---"+student.getLastName());
 				httpSession.setAttribute("student", student);
 				url="/student/index.jsp";
@@ -58,7 +58,7 @@ public class LoginAction extends HttpServlet{
 		}
 		if("teacher".equals(roleSelect)){
 			if(teacherServiceImpl.allowLogin(username, password)){
-				teacher = teacherServiceImpl.getTeacherInfo(username);
+				teacher = teacherServiceImpl.getTeacher(username);
 				httpSession.setAttribute("teacher", teacher);
 				url="/teacher/index.jsp";
 				

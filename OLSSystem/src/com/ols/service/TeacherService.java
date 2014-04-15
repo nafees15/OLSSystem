@@ -1,5 +1,6 @@
 package com.ols.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ols.po.*;
@@ -10,9 +11,12 @@ import com.ols.po.*;
 
 public interface TeacherService {
 	public boolean allowLogin(String TeacherID,String Password);
-	public Teacher getTeacherInfo(String TeacherID);
-	public List<Course> getOpenedCourseList(String teacherID);
-	public void addCourse(Course course);
+	public Teacher getTeacher(String TeacherID);
+	public void addNewTeacher(Teacher teacher);
+	public void updateTeacher(Teacher teacher);
+	public void deleteTeacher(Teacher teacher);
+	public ArrayList<Course> getTeachCourseListByTeacherID(String teacherID);	
 	public Alert getTeacherAlertByCourseID(String[] CourseID);
+	
 	
 }

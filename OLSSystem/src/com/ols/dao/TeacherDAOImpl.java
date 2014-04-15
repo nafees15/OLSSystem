@@ -5,12 +5,13 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.ols.po.*;
 import com.ols.database.DBConnection;
 
 /**
- * @author Zeyang 
+ * @author Zeyang 100
  *
  */
 public class TeacherDAOImpl implements TeacherDAO{
@@ -60,19 +61,117 @@ public class TeacherDAOImpl implements TeacherDAO{
 	@Override
 	public void addTeacher(Teacher teacher) {
 		// TODO Auto-generated method stub
-		
+		/*
+	private String TeacherID; 1
+	private String Sex;2
+	private String FirstName;3
+	private String LastName;4
+	private Date DOB;5
+	private String Email;6
+	private String PhoneNumber;7
+	private String Password;8
+		*/
+		String sql = "insert into teacher values(?,?,?,?,?,?,?,?)";
+		try {
+			
+			pstat = connection.prepareStatement(sql);
+			pstat.setString(1, teacher.getTeacherID());
+			pstat.setString(2, teacher.getSex());
+			pstat.setString(3, teacher.getFirstName());
+			pstat.setString(4, teacher.getLastName());
+			pstat.setDate(5, teacher.getDOB());
+			pstat.setString(6, teacher.getEmail());
+			pstat.setString(7, teacher.getPhoneNumber());
+			pstat.setString(8, teacher.getPassword());
+			
+			pstat.executeQuery();
+			pstat.close();
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void updateTeacher(Teacher teacher) {
 		// TODO Auto-generated method stub
-		
+		/*
+		private String TeacherID; 1
+		private String Sex;2
+		private String FirstName;3
+		private String LastName;4
+		private Date DOB;5
+		private String Email;6
+		private String PhoneNumber;7
+		private String Password;8
+			*/
+		String sql = "update teacher set sex=?, FirstName=?,LastName=?,DOB=?,Email=?,PhoneNumber=?,Password=? where teacherID=?";
+		try {
+			
+			pstat = connection.prepareStatement(sql);
+			pstat.setString(8, teacher.getTeacherID());
+			pstat.setString(1, teacher.getSex());
+			pstat.setString(2, teacher.getFirstName());
+			pstat.setString(3, teacher.getLastName());
+			pstat.setDate(4, teacher.getDOB());
+			pstat.setString(5, teacher.getEmail());
+			pstat.setString(6, teacher.getPhoneNumber());
+			pstat.setString(7, teacher.getPassword());
+
+			pstat.executeQuery();
+			pstat.close();
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void deleteTeacher(String TeacherID) {
 		// TODO Auto-generated method stub
-		
+		String sql = "delete from teacher where teacherID=?";
+		try {		
+			pstat = connection.prepareStatement(sql);
+			pstat.setString(1, TeacherID);
+
+			pstat.executeQuery();
+			pstat.close();
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public ArrayList<Course> getTeachCourseList(String teacherID) {
+		ArrayList<Course> courseList = new ArrayList<Course>();
+		String sql = "SELECT * from vi_course_teach where teacherID=?";
+		dbc = new DBConnection();
+		connection = dbc.getConnection();
+		try {
+			pstat = connection.prepareStatement(sql);
+			pstat.setString(1, teacherID);
+			ResultSet urs = (ResultSet) pstat.executeQuery();
+			while (urs.next()) {
+				Course course = new Course();
+				course.setCourseID(urs.getString(1));
+				course.setCourseName(urs.getString(2));
+				course.setOpenSemester(urs.getString(3));
+				course.setCredit(urs.getInt(4));
+				course.setState(urs.getString(5));
+				course.setDescription(urs.getString(6));
+				courseList.add(course);
+			}
+			urs.close();
+			pstat.close();
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return courseList;
 	}
 
 }

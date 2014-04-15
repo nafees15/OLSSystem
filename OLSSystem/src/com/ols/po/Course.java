@@ -8,6 +8,9 @@ import java.io.Serializable;
  */
 public class Course implements Serializable{
 	
+	public Course(){
+		
+	}
 		public Course(String courseID, String courseName, String openSemester,
 			int credit, String state, String description) {
 		super();

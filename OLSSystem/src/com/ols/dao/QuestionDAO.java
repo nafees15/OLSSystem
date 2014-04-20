@@ -11,7 +11,7 @@ import com.ols.po.*;
 
 public interface QuestionDAO {
 	public FillBlankQuestion getFillBlankQuestion(String QuestionID);
-	public FillBlankQuestion getMultiChoiceQuestion(String QuestionID);
+	public MultiChoiceQuestion getMultiChoiceQuestion(String QuestionID);
 	public ArrayList<Question> getFillBlankQuestionList(String QuizID);
 	public ArrayList<Question> getMultiChoiceQuestionList(String QuizID);	
 	public void addFillBlankQuestion(Question question);

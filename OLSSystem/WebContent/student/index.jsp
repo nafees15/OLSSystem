@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
- 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  <%@page import="com.ols.po.*" %>
  <%@ page import="java.util.*" %>
  
@@ -20,15 +20,10 @@
 <%
 Student student=(Student)session.getAttribute("student");
 
-//ArrayList<Course> courses = new ArrayList<Course>();
-//courses = (ArrayList<Course>)request.getAttribute("courses");
-String fname="--";
-String lname="--";
-if(student!=null){
-fname=student.getFirstName();
-lname=student.getLastName();
-System.out.println(fname+lname);
-}
+ArrayList<Course> courses = new ArrayList<Course>();
+courses = (ArrayList<Course>)session.getAttribute("courses");
+System.out.println("asdasd"+courses.get(0).getCourseName());
+
 %>
 <div id="page">
 <div id="wrapper">
@@ -38,12 +33,13 @@ System.out.println(fname+lname);
 			<div id="user_nav">
 					<div id='nav'>
 					<ul>
-					   <li><span>[<%=fname%>,<%=lname%>]</span></li>
+					   
 					   <li class='active'><a href='../index.jsp'><span>Home</span></a></li>
 					   <li class='active'><a href='index.jsp'><span>Course List</span></a></li>
 					   <li class='active'><a href='index.jsp'><span>Serch Course</span></a></li>
 					   <li class='last'><a href='#'><span>Help</span></a></li>
-					
+					<div id="normala"><h3><%out.print("["+student.getFirstName()+","+student.getLastName()+"]"); %><a href="logoutaction">&nbsp;&nbsp;&nbsp; <img alt="as" src="${pageContext.request.contextPath}\img\logout.png">Logout&nbsp;&nbsp;&nbsp;</a></h3>
+					</div>
 					</ul>
 					</div>
 			</div>
@@ -57,12 +53,15 @@ System.out.println(fname+lname);
 				  <th>Course Name</th>		
 				  <th>Edit</th>
 				  </tr>
-				<tr>
-				<tr><a href="quizlist.jsp">
-				  <td><a href="quizlist.jsp">Mat108S2011</a></td>
-				  <td>Math Reasearch</td></a>
-				  <td> <a href="deletecourseaction${courseID} }"><img alt="as" src="..\img\delete.png"></a></td>
-				  </tr>				
+				
+				<c:forEach items="${sessionScope['courses']}" var="Course">
+                <tr>
+                    <td><a href="courseQuiz?courseID=${Course.courseID}"><c:out value="${Course.courseID}" /></a></td>
+                    <td><c:out value="${Course.courseName}" /></td>
+                    <td><a href="editCourse?courseID=${Course.courseID}"><img alt="as" src="..\img\edit.png"></a> <a href="deleteCourse?courseID=${Course.courseID}"><img alt="as" src="..\img\delete.png"></a></td>
+                    
+                </tr>
+                </c:forEach>			
 				</table></div>
 			</div>
 			<div id="right">

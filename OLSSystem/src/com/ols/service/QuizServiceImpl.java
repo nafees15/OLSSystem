@@ -6,7 +6,7 @@ import com.ols.dao.*;
 import com.ols.po.Quiz;
 
 public class QuizServiceImpl implements QuizService{
-	private QuizDAO quizDAO=new QuizDAOImpl();
+	private QuizDAOImpl quizDAO=new QuizDAOImpl();
 	
 	@Override
 	public ArrayList<Quiz> getQuizByCourseID(String CourseID) {

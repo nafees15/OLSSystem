@@ -8,6 +8,32 @@
 <link media="all" rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <link rel="shortcut icon" href="favicon.ico" >
 <link rel="icon" type="image/gif" href="icon.gif" >
+<script type="text/javascript">
+function loadXMLDoc(filename)
+{ 
+	var xmlhttp;
+	if(window.XMLHttpRequest)
+	  {// code for IE7+, Firefox, Chrome, Opera, Safari   
+		xmlhttp=new XMLHttpRequest(); 
+		}
+	else
+	 {// code for IE6, IE5 
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	  } 
+	xmlhttp.onreadystatechange=function(){ 
+	  if(xmlhttp.readyState==4 && xmlhttp.status==200){
+		document.getElementById("signup").innerHTML=xmlhttp.responseText;
+      		}
+	}
+xmlhttp.open("GET",filename,true);
+xmlhttp.send();
+}
+
+function che(){
+	tt = document.getElementById("signup");
+	tt.style.display="block";
+}
+</script>
 </head>
 <body>
 <%
@@ -116,12 +142,37 @@ if(errorMessage==null) errorMessage="";%>
 			
 			                <footer class="clearfix">
 			
-			                    <p><span class="info">?</span><a href="#">Forgot Password</a></p>
-			
-			                </footer>
-			
+			                    <p><span class="info">?</span><a href="#">Forgot Password</a></p>			
+			                </footer>			
 			            </form>
-			
+			           <!-- <button id="button" onclick="loadXMLDoc('${pageContext.request.contextPath}/student/studentSignup.jsp')"><img alt="as" src="${pageContext.request.contextPath}\img\down_arrow.png">Sign UP</button></br></br></br>-->
+						<button id="button" onclick="che()"><img alt="as" src="${pageContext.request.contextPath}\img\down_arrow.png">Sign UP</button></br></br></br>
+						
+						<div id="signup" style="display:none"> 
+						<form action="signupaction" method="post">
+									</br><label>NetID:*</label></br> 
+									<input type="text" name="username" size="25" maxlength="16" /></br>
+									<label>Sex:</label><select name="Sex">
+									                   <option value="male">Male</option>
+													   <option value="female">Female</option>							  
+														</select></br> 
+									<label>First Name:</label></br> 
+									<input bgcolor="#edf7e8" type="text" name="CourseName" size=25>			
+									<label>Last Name:</label></br> 
+									<input bgcolor="#edf7e8" type="text" name="CourseName" size=25>	
+									<label>DOB(MM-DD-YYYY):</label></br> 
+									<input bgcolor="#edf7e8" type="text" name="dob" size=10>	
+									<label>E-mail:*</label></br> 
+									<input bgcolor="#edf7e8" type="text" name="email" size=10>
+									<label>Phone Number:</label></br> 
+									<input bgcolor="#edf7e8" type="text" name="phonenumber" size=10>
+									<label>Password:*</label></br> 
+									<input bgcolor="#edf7e8" type="text" name="password" size=10>
+									<label>Confirm Password:*</label></br> 
+									<input bgcolor="#edf7e8" type="text" name="confirmpassword" size=10>
+									<input value="Sign UP" type="submit">			
+									</form>
+						</div>
 			        </fieldset>
 
     				</div> <!-- end login-form -->
@@ -135,7 +186,7 @@ if(errorMessage==null) errorMessage="";%>
 	   	    <img alt="as" src="icon.gif">
 	    Designed by <strong>Stupid 5</strong>.
             <address>
-      <strong>University at Albany</strong>, State University of New York � 1400 Washington Ave., </br>� Albany, NY 12222 � Phone (518) 442-3300
+      <strong>University at Albany</strong>, State University of New York · 1400 Washington Ave., </br>· Albany, NY 12222 · Phone (518) 442-3300
       </address>
            <span>&copy;&nbsp;2014 University at Albany</span> 
            </div>

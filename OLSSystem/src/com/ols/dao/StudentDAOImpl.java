@@ -1,7 +1,6 @@
 package com.ols.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,7 +8,6 @@ import java.util.ArrayList;
 
 import com.ols.po.*;
 import com.ols.database.DBConnection;
-import com.ols.util.*;
 
 /**
  * @author Zeyang 100
@@ -20,11 +18,10 @@ public class StudentDAOImpl implements StudentDAO{
 	private static Connection connection;
 	private static DBConnection dbc;
 	private static PreparedStatement pstat;
-	
 	@Override
 	public Student getStudentByID(String studentID) {
 		// TODO Auto-generated method stub
-		Student student = new Student();		
+		Student student = new Student();
 		dbc = new DBConnection();
 		connection = dbc.getConnection();
 		String sql = "SELECT * from student where StudentID=?";
@@ -39,16 +36,21 @@ public class StudentDAOImpl implements StudentDAO{
 				student.setSex(urs.getString(2));
 				student.setFirstName(urs.getString(3));
 				student.setLastName(urs.getString(4));
-				student.setDOB(DateFormatConvert.JavaDateToSqlDate((urs.getDate(5)));
+				student.setDOB(urs.getString(5));
 				student.setEmail(urs.getString(6));
 				student.setPhoneNumber(urs.getString(7));
 				student.setPassword(urs.getString(8));
-
 				urs.close();
 				pstat.close();
 				connection.close();
-
 			}
+			else{
+				urs.close();
+				pstat.close();
+				connection.close();
+				return null;
+			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -80,12 +82,12 @@ public class StudentDAOImpl implements StudentDAO{
 				pstat.setString(2, student.getSex());
 				pstat.setString(3, student.getFirstName());
 				pstat.setString(4, student.getLastName());
-				pstat.setDate(5, student.getDOB());
+				pstat.setString(5, student.getDOB());
 				pstat.setString(6, student.getEmail());
 				pstat.setString(7, student.getPhoneNumber());
 				pstat.setString(8, student.getPassword());
 				
-				pstat.executeQuery();
+				pstat.executeUpdate();
 				pstat.close();
 				connection.close();
 			} catch (SQLException e) {
@@ -105,12 +107,12 @@ public class StudentDAOImpl implements StudentDAO{
 			pstat.setString(1, student.getSex());
 			pstat.setString(2, student.getFirstName());
 			pstat.setString(3, student.getLastName());
-			pstat.setDate(4, student.getDOB());
+			pstat.setString(4, student.getDOB());
 			pstat.setString(5, student.getEmail());
 			pstat.setString(6, student.getPhoneNumber());
 			pstat.setString(7, student.getPassword());
 
-			pstat.executeQuery();
+			pstat.executeUpdate();
 			pstat.close();
 			connection.close();
 		} catch (SQLException e) {
@@ -127,7 +129,7 @@ public class StudentDAOImpl implements StudentDAO{
 			pstat = connection.prepareStatement(sql);
 			pstat.setString(1, studentID);
 
-			pstat.executeQuery();
+			pstat.executeUpdate();
 			pstat.close();
 			connection.close();
 		} catch (SQLException e) {
@@ -174,8 +176,21 @@ public class StudentDAOImpl implements StudentDAO{
 	}
 
 	@Override
-	public void registerCourse(String StudentID) {
+	public void registerCourse(String StudentID, String CourseID) {
 		// TODO Auto-generated method stub
-		
+		String sql = "insert into register values(?,?)";
+		try {
+			
+			pstat = connection.prepareStatement(sql);
+			pstat.setString(1, StudentID);
+			pstat.setString(2, CourseID);
+			
+			pstat.executeUpdate();
+			pstat.close();
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

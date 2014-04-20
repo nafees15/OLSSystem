@@ -1,7 +1,6 @@
 package com.ols.po;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 /**
  * @author adil alim
@@ -16,14 +15,14 @@ public class Quiz implements Serializable{
 	
 	private String QuizID;
 	private String QuizName;
-	private Date DueTime;	
+	private String DueTime;	
 	private float QuizFullGrade;
 	private int TotalQuestionNumber;
 	
 	public Quiz(){
 		
 	}
-	public Quiz(String quizID, String quizName, Date dueTime,
+	public Quiz(String quizID, String quizName, String dueTime,
 			float quizFullGrade, int totalQuestionNumber) {
 		super();
 		QuizID = quizID;
@@ -45,10 +44,10 @@ public class Quiz implements Serializable{
 	public void setQuizName(String quizName) {
 		QuizName = quizName;
 	}
-	public Date getDueTime() {
+	public String getDueTime() {
 		return DueTime;
 	}
-	public void setDueTime(Date dueTime) {
+	public void setDueTime(String dueTime) {
 		DueTime = dueTime;
 	}
 	public float getQuizFullGrade() {

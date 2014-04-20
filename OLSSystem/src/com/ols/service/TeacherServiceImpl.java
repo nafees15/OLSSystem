@@ -14,15 +14,18 @@ import com.ols.dao.*;
 
 public class TeacherServiceImpl implements TeacherService {
 	
-	private TeacherDAO teacherDAO=new TeacherDAOImpl();
+	private TeacherDAOImpl teacherDAO=new TeacherDAOImpl();
 	@Override
 	public boolean allowLogin(String TeacherID, String Password) {
 		// TODO Auto-generated method stub
 		boolean upchecked = false;
 		Teacher teacher = teacherDAO.getTeacherByID(TeacherID);
-		if(teacher.getPassword()==Password) upchecked=true;
-		else upchecked=false;
-
+		if(teacher==null) upchecked=false;
+		else {
+			if(teacher.getPassword().equals(Password)) upchecked=true;
+			else upchecked=false;
+		}
+		
 		return upchecked;
 	}
 

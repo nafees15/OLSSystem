@@ -5,12 +5,10 @@ package com.ols.dao;
  *
  */
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.ols.database.DBConnection;
 import com.ols.po.Course;
@@ -22,14 +20,17 @@ public class CourseDAOImpl implements CourseDAO {
 	private static PreparedStatement pstat;
 
 	/*
-	 * private String QuizID; private String QuizName; private Date DueTime;
+	 * private String QuizID; private String QuizName; private String DueTime;
 	 * private float QuizFullGrade; private int TotalQuestionNumber; private
 	 * String CourseID;
 	 */
 
 	public ArrayList<Quiz> getQuizByCourseID(String CourseID) {
+
+		dbc = new DBConnection();
+		connection = dbc.getConnection();
 		
-		ArrayList<Quiz> quizList = new ArrayList<Quiz>();
+		ArrayList<Quiz> quizList = new ArrayList<Quiz>();		
 		String sql = "SELECT * from vi_quiz_quizlist where CourseID=?";
 		try {
 			pstat = connection.prepareStatement(sql);
@@ -39,7 +40,7 @@ public class CourseDAOImpl implements CourseDAO {
 				Quiz quiz = new Quiz();
 				quiz.setQuizID(urs.getString(1));
 				quiz.setQuizName(urs.getString(2));
-				quiz.setDueTime(urs.getDate(3));
+				quiz.setDueTime(urs.getString(3));
 				quiz.setQuizFullGrade(urs.getFloat(4));
 				quiz.setTotalQuestionNumber(urs.getInt(5));
 				quizList.add(quiz);
@@ -63,6 +64,10 @@ public class CourseDAOImpl implements CourseDAO {
 		private String state;5
 		private String description;6
 		*/
+
+		dbc = new DBConnection();
+		connection = dbc.getConnection();
+		
 		String sql = "insert into course values(?,?,?,?,?,?)";
 		try {
 			
@@ -74,7 +79,7 @@ public class CourseDAOImpl implements CourseDAO {
 			pstat.setString(5, course.getState());
 			pstat.setString(6, course.getDescription());
 			
-			pstat.executeQuery();
+			pstat.executeUpdate();
 			pstat.close();
 			connection.close();
 		} catch (SQLException e) {
@@ -86,6 +91,10 @@ public class CourseDAOImpl implements CourseDAO {
 //course is a new course that ID not change, other attributes changed
 	public void updateCourse(Course course) {
 		String sql = "update course set courseName=?, OpenSemester=?,Credit=?,State=?,Description=? where courseID=?";
+
+		dbc = new DBConnection();
+		connection = dbc.getConnection();
+		
 		try {
 			
 			pstat = connection.prepareStatement(sql);
@@ -96,7 +105,7 @@ public class CourseDAOImpl implements CourseDAO {
 			pstat.setString(4, course.getState());
 			pstat.setString(5, course.getDescription());
 
-			pstat.executeQuery();
+			pstat.executeUpdate();
 			pstat.close();
 			connection.close();
 		} catch (SQLException e) {
@@ -107,11 +116,15 @@ public class CourseDAOImpl implements CourseDAO {
 
 	public void deleteCourse(String CourseID) {
 		String sql = "delete from course where courseID=?";
+
+		dbc = new DBConnection();
+		connection = dbc.getConnection();
+		
 		try {		
 			pstat = connection.prepareStatement(sql);
 			pstat.setString(1, CourseID);
 
-			pstat.executeQuery();
+			pstat.executeUpdate();
 			pstat.close();
 			connection.close();
 		} catch (SQLException e) {
@@ -122,6 +135,10 @@ public class CourseDAOImpl implements CourseDAO {
 
 	@Override
 	public ArrayList<Course> getCourseByTeacherID(String TeacherID) {
+
+		dbc = new DBConnection();
+		connection = dbc.getConnection();
+		
 		// TODO Auto-generated method stub
 		ArrayList<Course> courseList = new ArrayList<Course>();
 		String sql = "SELECT * from vi_course_teach where teacherID=?";
@@ -161,6 +178,7 @@ public class CourseDAOImpl implements CourseDAO {
 		private String state;5
 		private String description;6
 		*/
+		
 		ArrayList<Course> courseList = new ArrayList<Course>();
 		String sql = "SELECT * from vi_course_register where studentID=?";
 		dbc = new DBConnection();
@@ -192,6 +210,10 @@ public class CourseDAOImpl implements CourseDAO {
 	@Override
 	public Course getCourseByID(String CourseID) {
 		// TODO Auto-generated method stub
+
+		dbc = new DBConnection();
+		connection = dbc.getConnection();
+		
 		String sql = "select * from course where courseID=?";
 		Course course = new Course();
 		try {		

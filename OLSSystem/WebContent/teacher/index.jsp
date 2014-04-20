@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  <%@page import="com.ols.po.*" %>
  <%@ page import="java.util.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,7 +12,7 @@
 <link rel="shortcut icon" href="favicon.ico" >
 <link rel="icon" type="image/gif" href="icon.gif" >
 <script type="text/javascript">
-function loadXMLDoc(filename)
+function loadXMLDoc(filename,divename)
 { 
 	var xmlhttp;
 	if(window.XMLHttpRequest)
@@ -24,13 +25,33 @@ function loadXMLDoc(filename)
 	  } 
 	xmlhttp.onreadystatechange=function(){ 
 	  if(xmlhttp.readyState==4 && xmlhttp.status==200){
-		document.getElementById("edit_div").innerHTML=xmlhttp.responseText;
+		document.getElementById("edit_div").innerHTML=xmlhttp.responseText;		
       		}
 	}
 xmlhttp.open("GET",filename,true);
 xmlhttp.send();
 }
 
+function editCourse(filename)
+{ 
+	var xmlhttp;
+	if(window.XMLHttpRequest)
+	  {// code for IE7+, Firefox, Chrome, Opera, Safari   
+		xmlhttp=new XMLHttpRequest(); 
+		}
+	else
+	 {// code for IE6, IE5 
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	  } 
+	xmlhttp.onreadystatechange=function(){ 
+	  if(xmlhttp.readyState==4 && xmlhttp.status==200){		
+			document.getElementById("edit_course").innerHTML=xmlhttp.responseText;
+		
+      		}
+	}
+xmlhttp.open("GET",filename,true);
+xmlhttp.send();
+}
 </script>
 </head>
 <body>
@@ -38,7 +59,7 @@ xmlhttp.send();
 Teacher teacher=(Teacher)session.getAttribute("teacher");
 
 ArrayList<Course> courses = new ArrayList<Course>();
-courses = (ArrayList<Course>)request.getAttribute("courses");
+courses = (ArrayList<Course>)session.getAttribute("courses");
 
 %>
 <div id="page">
@@ -48,13 +69,13 @@ courses = (ArrayList<Course>)request.getAttribute("courses");
 			
 			<div id="user_nav">
 					<div id='nav'>
-					<ul>
-					   <li><span><%out.print(teacher.getFirstName()+","+teacher.getLastName()); %></span></li>
+					<ul>					   
 					   <li class='active'><a href='../index.jsp'><span>Home</span></a></li>
 					   <li class='active'><a href='index.jsp'><span>Course List</span></a></li>
-					   <li class='active'><a href='index.jsp'><span>Serch Course</span></a></li>
+					   <li class='active'><a href='index.jsp'><span>Search Course</span></a></li>
 					   <li class='last'><a href='#'><span>Help</span></a></li>
-					
+					   <div id="normala"><h3><%out.print("["+teacher.getFirstName()+","+teacher.getLastName()+"]"); %><a href="logoutaction">&nbsp;&nbsp;&nbsp;<img alt="as" src="${pageContext.request.contextPath}\img\logout.png">Logout&nbsp;&nbsp;&nbsp;</a></h3>
+					</div>
 					</ul>
 					</div>
 			</div>
@@ -64,8 +85,8 @@ courses = (ArrayList<Course>)request.getAttribute("courses");
 		<div id="content">
 			<div id="left">
 				<div id="edit">
-			 		<button id="button"  onclick="loadXMLDoc('addCourseTable.jsp')">+Add Course</button>
-			 		<button id="button" onclick="loadXMLDoc('requestOpenCourseTable.jsp')">Request Open Course</button>
+			 		<button id="button" onclick="loadXMLDoc('${pageContext.request.contextPath}/teacher/addCourseTable.jsp')"><img alt="as" src="${pageContext.request.contextPath}\img\add.png">Add Course</button>
+			 		<button id="button" onclick="loadXMLDoc('${pageContext.request.contextPath}/teacher/requestOpenCourseTable.jsp')">Request Open Course</button>
 			 		<div id="edit_div"> </div>
 			    </div>
 			    <div id="course_list">
@@ -75,17 +96,18 @@ courses = (ArrayList<Course>)request.getAttribute("courses");
 				  <th width=65%>Course Name</th>		
 				  <th width=20%>Edit</th>
 				  </tr>
-				<tr>
-				<c:forEach items="${requestScope['courses']}" var="Course">
+				
+				<c:forEach items="${sessionScope['courses']}" var="Course">
                 <tr>
-                    <td><c:out value="${Course.courseID}" /></td>
+                    <td><a href="courseQuiz?courseID=${Course.courseID}"><c:out value="${Course.courseID}" /></a></td>
                     <td><c:out value="${Course.courseName}" /></td>
-                    <td><a href="editCourse?courseID=${Course.courseID}"><img alt="as" src="..\img\edit.png"></a> <a href="deleteCourse?courseID=${Course.courseID}"><img alt="as" src="..\img\delete.png"></a></td>
+                    <td><a href="editCourse?courseID=${Course.courseID}"><img alt="as" src="${pageContext.request.contextPath}\img\edit.png"></a> <a href="deleteCourse?courseID=${Course.courseID}"><img alt="as" src="${pageContext.request.contextPath}\img\delete.png"></a></td>
                     
                 </tr>
             	</c:forEach>			
 				</table>
 				</div>
+				<div id="edit_course"> </div>
 			</div>
 			<div id="right">
 			<div id="right-coulmn">

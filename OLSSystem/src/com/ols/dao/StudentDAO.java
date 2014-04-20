@@ -14,7 +14,7 @@ public interface StudentDAO {
 	public void addStudent(Student student);
 	public void updateStudent(Student student);
 	public void deleteStudent(String StudentID);
-	public void registerCourse(String StudentID);
+	public void registerCourse(String StudentID, String CourseID);
 	public ArrayList<Course> getRegisteredCourseList(String studentID);
 	
 }

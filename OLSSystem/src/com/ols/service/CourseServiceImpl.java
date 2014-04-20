@@ -7,7 +7,8 @@ import com.ols.dao.*;
 import com.ols.po.Course;
 
 public class CourseServiceImpl {
-	private CourseDAO courseDAO=new CourseDAOImpl();
+	private CourseDAOImpl courseDAO=new CourseDAOImpl();
+	private TeacherDAOImpl teacherDAO=new TeacherDAOImpl();
 	
 	public ArrayList<Course> getCourseByTeacherID(String TeacherID) {
 		return courseDAO.getCourseByTeacherID(TeacherID);
@@ -18,8 +19,9 @@ public class CourseServiceImpl {
 	public Course getCourse(String CourseID) {
 		return courseDAO.getCourseByID(CourseID);
 	}
-	public void addNewCourse(Course course) {
+	public void addNewCourse(Course course,String teacherID) {
 		courseDAO.addCourse(course);
+		teacherDAO.teachCourse(teacherID, course.getCourseID());
 	}
 	public void updateCourse(Course course) {
 		courseDAO.updateCourse(course);

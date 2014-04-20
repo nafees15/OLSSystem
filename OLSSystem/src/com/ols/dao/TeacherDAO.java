@@ -15,5 +15,5 @@ public interface TeacherDAO {
 	public void updateTeacher(Teacher teacher);
 	public void deleteTeacher(String TeacherID);
 	public ArrayList<Course> getTeachCourseList(String teacherID);
-	
+	public void teachCourse(String TeacherID, String CourseID);
 }

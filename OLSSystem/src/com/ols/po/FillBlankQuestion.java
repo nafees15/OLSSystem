@@ -1,6 +1,7 @@
 package com.ols.po;
 
-import java.util.List;
+import java.util.ArrayList;
+
 
 /**
  * @author adil alim
@@ -12,9 +13,10 @@ public class FillBlankQuestion extends Question {
 	private static final long serialVersionUID = 1L;
 	
 	private String QuestionID;
-	private List<String> content;
-	private List<String> option;
-	private List<String> correctAnswer;
+	private ArrayList<String> content;
+	private ArrayList<String> option;
+	private ArrayList<String> correctAnswer;
+	private int point;
 	private String hints;
 	
 	private final int type=FILL_BLANK_TYPE;
@@ -27,16 +29,16 @@ public class FillBlankQuestion extends Question {
 	public void setQuestionID(String questionID) {
 		QuestionID = questionID;
 	}
-	public List<String> getContent() {
+	public ArrayList<String> getContent() {
 		return content;
 	}
-	public void setContent(List<String> content) {
+	public void setContent(ArrayList<String> content) {
 		this.content = content;
 	}
-	public List<String> getOption() {
+	public ArrayList<String> getOption() {
 		return option;
 	}
-	public void setOption(List<String> option) {
+	public void setOption(ArrayList<String> option) {
 		this.option = option;
 	}
 	
@@ -50,10 +52,16 @@ public class FillBlankQuestion extends Question {
 	public int getType() {
 		return type;
 	}
-	public List<String> getCorrectAnswer() {
+	public ArrayList<String> getCorrectAnswer() {
 		return correctAnswer;
 	}
-	public void setCorrectAnswer(List<String> correctAnswer) {
+	public void setCorrectAnswer(ArrayList<String> correctAnswer) {
 		this.correctAnswer = correctAnswer;
+	}
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
 	}
 }

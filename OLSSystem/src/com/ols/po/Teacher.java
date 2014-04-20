@@ -1,7 +1,7 @@
 package com.ols.po;
 
 import java.io.Serializable;
-import java.sql.Date;
+
 
 /**
  * @author adil alim
@@ -17,7 +17,7 @@ public class Teacher implements Serializable {
 	private String Sex;
 	private String FirstName;
 	private String LastName;
-	private Date DOB;
+	private String DOB;
 	private String Email;
 	private String PhoneNumber;
 	private String Password;
@@ -47,10 +47,10 @@ public class Teacher implements Serializable {
 	public void setLastName(String lastName) {
 		LastName = lastName;
 	}
-	public Date getDOB() {
+	public String getDOB() {
 		return DOB;
 	}
-	public void setDOB(Date dob) {
+	public void setDOB(String dob) {
 		DOB = dob;
 	}
 	public String getEmail() {

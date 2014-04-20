@@ -1,7 +1,6 @@
 package com.ols.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,7 +27,7 @@ public class QuizDAOImpl implements QuizDAO{
 				Quiz quiz = new Quiz();
 				quiz.setQuizID(urs.getString(1));
 				quiz.setQuizName(urs.getString(2));
-				quiz.setDueTime(urs.getDate(3));
+				quiz.setDueTime(urs.getString(3));
 				quiz.setQuizFullGrade(urs.getFloat(4));
 				quiz.setTotalQuestionNumber(urs.getInt(5));
 				quizList.add(quiz);
@@ -48,7 +47,7 @@ public class QuizDAOImpl implements QuizDAO{
 		// TODO Auto-generated method stub
 		/*private String QuizID;1
 		private String QuizName;2
-		private Date DueTime;	3
+		private String DueTime;	3
 		private float QuizFullGrade;4
 		private int TotalQuestionNumber;5
 		*/
@@ -59,11 +58,11 @@ public class QuizDAOImpl implements QuizDAO{
 			pstat = connection.prepareStatement(sql);
 			pstat.setString(1, quiz.getQuizID());
 			pstat.setString(2, quiz.getQuizName());
-			pstat.setDate(3, quiz.getDueTime());
+			pstat.setString(3, quiz.getDueTime());
 			pstat.setFloat(4, quiz.getQuizFullGrade());
 			pstat.setInt(5, quiz.getTotalQuestionNumber());
 			
-			pstat.executeQuery();
+			pstat.executeUpdate();
 			pstat.close();
 			connection.close();
 		} catch (SQLException e) {
@@ -81,11 +80,11 @@ public class QuizDAOImpl implements QuizDAO{
 			pstat = connection.prepareStatement(sql);
 			pstat.setString(5, quiz.getQuizID());
 			pstat.setString(1, quiz.getQuizName());
-			pstat.setDate(2, quiz.getDueTime());
+			pstat.setString(2, quiz.getDueTime());
 			pstat.setFloat(3, quiz.getQuizFullGrade());
 			pstat.setInt(4, quiz.getTotalQuestionNumber());
 
-			pstat.executeQuery();
+			pstat.executeUpdate();
 			pstat.close();
 			connection.close();
 		} catch (SQLException e) {
@@ -102,13 +101,46 @@ public class QuizDAOImpl implements QuizDAO{
 			pstat = connection.prepareStatement(sql);
 			pstat.setString(1, QuizID);
 
-			pstat.executeQuery();
+			pstat.executeUpdate();
 			pstat.close();
 			connection.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public Quiz getQuizByQuizID(String QuizID) {
+		// TODO Auto-generated method stub
+		/*private String QuizID;
+		private String QuizName;
+		private String DueTime;	
+		private float QuizFullGrade;
+		private int TotalQuestionNumber;*/
+		String sql = "select * from quiz where quizID=?";
+		Quiz quiz = new Quiz();
+		try {		
+			pstat = connection.prepareStatement(sql);
+			pstat.setString(1, QuizID);
+			ResultSet urs = (ResultSet) pstat.executeQuery();		
+			if (urs.next()) {
+				quiz.setQuizID(urs.getString(1));
+				quiz.setQuizName(urs.getString(2));
+				quiz.setDueTime(urs.getString(3));
+				quiz.setQuizFullGrade(urs.getFloat(4));
+				quiz.setTotalQuestionNumber(urs.getInt(5));
+				
+			}	
+			urs.close();
+			pstat.close();
+			connection.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return quiz;
 	}
 
 }

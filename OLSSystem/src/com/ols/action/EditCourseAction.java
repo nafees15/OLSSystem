@@ -33,9 +33,12 @@ public class EditCourseAction extends HttpServlet{
 	public void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 		HttpSession httpSession = request.getSession();
 		
-		String teacherID = request.getParameter("TeacherID");
+		Teacher teacher = (Teacher)httpSession.getAttribute("teacher");
+		
 		String courseID = request.getParameter("CourseID");
+		
 		String courseName = request.getParameter("CourseName");
+		
 		String openSemester = request.getParameter("OpenSemester");
 		int credit = Integer.parseInt(request.getParameter("Credit"));
 		String state = request.getParameter("State");
@@ -45,7 +48,7 @@ public class EditCourseAction extends HttpServlet{
 		ArrayList<Course> arrCourse = new ArrayList<Course>();
 		CourseServiceImpl courseServiceImpl = new CourseServiceImpl(); 
 		
-		arrCourse = courseServiceImpl.getCourseByTeacherID(teacherID);
+		arrCourse = courseServiceImpl.getCourseByTeacherID(teacher.getTeacherID());
 		if(arrCourse.size()== 0)
 			System.out.println("empty course list of teacher.");
 		else{
@@ -61,7 +64,7 @@ public class EditCourseAction extends HttpServlet{
 					courseServiceImpl.updateCourse(course);
 				}
 			}
-			arrCourse = courseServiceImpl.getCourseByTeacherID(teacherID);
+			arrCourse = courseServiceImpl.getCourseByTeacherID(teacher.getTeacherID());
 		}
 		
 		httpSession.setAttribute("CourseList", arrCourse);

@@ -12,6 +12,9 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>	
+	 
+	 
+	 <!--- Login-Logout-->
 	 <servlet>
     <servlet-name>LoginAction</servlet-name>
     <servlet-class>com.ols.action.LoginAction</servlet-class>
@@ -20,4 +23,31 @@
     <servlet-name>LoginAction</servlet-name>
     <url-pattern>/loginaction</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>Logout</servlet-name>
+    <servlet-class>com.ols.action.LogoutAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Logout</servlet-name>
+    <url-pattern>/logoutaction</url-pattern>
+  </servlet-mapping>
+  <!-- Add course  -->
+    <servlet>
+   <servlet-name>AddCourseAction</servlet-name>
+    <servlet-class>com.ols.action.AddCourseAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddCourseAction</servlet-name>
+    <url-pattern>/addCourseAction</url-pattern>
+  </servlet-mapping>
+  <!-- Edit Course- -->
+  <servlet>
+   <servlet-name>EditCourseAction</servlet-name>
+    <servlet-class>com.ols.action.EditCourseAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditCourseAction</servlet-name>
+    <url-pattern>/editCourse</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

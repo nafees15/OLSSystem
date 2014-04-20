@@ -10,7 +10,7 @@ import com.ols.po.*;
  */
 
 public interface QuizDAO {
-	
+	public Quiz getQuizByQuizID(String QuizID);
 	public ArrayList<Quiz> getQuizByCourseID(String CourseID);	
 	public void addQuiz(Quiz quiz);
 	public void updateQuiz(Quiz quiz);

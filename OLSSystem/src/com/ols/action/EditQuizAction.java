@@ -5,9 +5,6 @@ package com.ols.action;
 
 import java.io.IOException;
 import java.util.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,15 +13,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.ols.po.Course;
+//import com.ols.po.Course;
 import com.ols.po.Quiz;
-import com.ols.po.Teacher;
-import com.ols.po.Student;
-import com.ols.dao.StudentDAO;
-import com.ols.dao.TeacherDAO;
+//import com.ols.po.Teacher;
+//import com.ols.po.Student;
+//import com.ols.dao.StudentDAO;
+//import com.ols.dao.TeacherDAO;
 import com.ols.service.*;
 
-public class EditQuziAction extends HttpServlet{
+public class EditQuizAction extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -39,16 +36,7 @@ public class EditQuziAction extends HttpServlet{
 		//Quiz part
 		String QuizID = request.getParameter("QuizID");
 		String QuizName = request.getParameter("QuizName");
-
-		// convert string date format to Date
-		Date date=null;
-		try {
-			date = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH).parse(request.getParameter("DueTime"));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Date DueTime = date;
+		String DueDate = request.getParameter("bdaytime");
 		float QuizFullGrade = Float.parseFloat(request.getParameter("QuizFullGrade"));
 		int TotalQuestionNumber = Integer.parseInt(request.getParameter("QuizFullGrade"));
 		
@@ -62,10 +50,7 @@ public class EditQuziAction extends HttpServlet{
 				if(quiz.getQuizID().equalsIgnoreCase(QuizID)){
 					quiz.setQuizID(QuizID);
 					quiz.setQuizName(QuizName);
-					
-					// convert util.date to sql.date
-					java.sql.Date sqlDate = new java.sql.Date(DueTime.getTime());
-					quiz.setDueTime(sqlDate);
+					quiz.setDueTime(DueDate);
 					quiz.setQuizFullGrade(QuizFullGrade);
 					quiz.setTotalQuestionNumber(TotalQuestionNumber);
 					quizServiceImpl.updateQuiz(quiz);

@@ -1,7 +1,6 @@
 package com.ols.po;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @author adil alim
@@ -16,19 +15,26 @@ public class Student implements Serializable {
 	private String Sex;
 	private String FirstName;
 	private String LastName;
-	private Date DOB;
+	private String DOB;
 	private String Email;
 	private String PhoneNumber;	
 	private String Password;
 	
 	public Student(){
-		
+		this.StudentID="";
+		this.Sex="";
+		this.FirstName="";
+		this.LastName="";
+		this.DOB="";
+		this.Email="";
+		this.PhoneNumber="";	
+		this.Password="";
 	}
-	public Date getDOB() {
+	public String getDOB() {
 		return DOB;
 	}
 
-	public void setDOB(Date dOB) {
+	public void setDOB(String dOB) {
 		DOB = dOB;
 	}
 

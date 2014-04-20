@@ -31,8 +31,10 @@ public class AddCourseAction extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 		HttpSession httpSession = request.getSession();
+		Teacher teacher=(Teacher)httpSession.getAttribute("teacher");
+		String teacherID = teacher.getTeacherID();
 		
-		String teacherID = request.getParameter("TeacherID");
+		System.out.println("Addcourse action:----teacherid:--"+teacherID);
 		String courseID = request.getParameter("CourseID");
 		String courseName = request.getParameter("CourseName");
 		String openSemester = request.getParameter("OpenSemester");
@@ -41,10 +43,10 @@ public class AddCourseAction extends HttpServlet {
 		String description = request.getParameter("Description");
 		
 		Course course = new Course();
-		ArrayList<Course> arrCourse = new ArrayList<Course>();
+		ArrayList<Course> courses = new ArrayList<Course>();
 		CourseServiceImpl courseService = new CourseServiceImpl(); 
 		
-		if(teacherID == "") teacherID ="";
+		if(teacherID.length()==0) teacherID ="";
 		System.out.println("Teacher ID is"+ teacherID);
 		
 		if(teacherID != ""){
@@ -55,15 +57,14 @@ public class AddCourseAction extends HttpServlet {
 			course.setState(state);
 			course.setDescription(description);
 			
-			//arrCourse.add(course);
-			courseService.addNewCourse(course);
-			//arrCourse = courseService.getCourseByTeacherID(teacherID);
+			courseService.addNewCourse(course, teacherID);
 		}else{
 			System.out.println("There is no course added");
 		}
-		arrCourse=courseService.getCourseByTeacherID(teacherID);
-		httpSession.setAttribute("CourseList", arrCourse);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/teacher/addCourseTable.jsp");
+		courses=courseService.getCourseByTeacherID(teacherID);
+		httpSession.setAttribute("courses", courses);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/teacher/index.jsp");
 		dispatcher.forward(request, response);
 	}
 	

@@ -48,8 +48,9 @@ public class LoginAction extends HttpServlet{
 		if("student".equals(roleSelect)){
 			if(studentServiceImpl.allowLogin(userID, password)){
 				student = studentServiceImpl.getStudent(userID);
+				
 				courses = studentServiceImpl.getRegisteredCourseListByStudentID(userID);
-				System.out.println("login success check:"+student.getFirstName()+"---"+student.getLastName());
+				System.out.println("login success check:"+student.getFirstName()+"---"+courses.get(0).getCourseName());
 				
 				httpSession.setAttribute("student", student);
 				httpSession.setAttribute("courses", courses);

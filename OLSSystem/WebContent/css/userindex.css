@@ -199,7 +199,7 @@ margin: 0 -9999px 22px;
     background: #330033;	
 	border-radius: 3px;
 	color: #fff;
-	float: right;
+	float: left;
 	font-weight: bold;
 	margin-top: 20px;
 	padding: 5px 10px;
@@ -275,4 +275,21 @@ font-size: 14px;
 padding: 8px;
 text-align: center;
 
+}
+#normala{
+float:right;
+
+padding-top:0;
+padding-left:5px;
+
+}
+#normala a{ 
+color: red;
+text-decoration: none;
+}
+#normala a:hover{
+text-decoration: none;
+}
+#normala h3{
+color:white;
 }

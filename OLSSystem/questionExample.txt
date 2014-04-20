@@ -12,6 +12,8 @@ option="SAT#DDO#SDE#FAF#GFW"
 correct="A,E"
 Hints="...."
 
+<option>SAT</option><option>DDO</option><option>SDE</option><option>FAF</option><option>GFW</option>
+
 FillBlankQuestion:
 Within each county, claims of[12,34,15]male and [14,15,17] female patients are randomly selected?
 

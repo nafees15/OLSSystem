@@ -11,12 +11,17 @@ import com.ols.dao.*;
 
 public class StudentServiceImpl implements StudentService{
 	
-	private StudentDAO studentDAO=new StudentDAOImpl();
+	private StudentDAOImpl studentDAO=new StudentDAOImpl();
 	public boolean allowLogin(String StudentID,String Password) {
 		boolean upchecked = false;
 		Student student = studentDAO.getStudentByID(StudentID);
-		if(student.getPassword()==Password) upchecked=true;
-		else upchecked=false;
+		//System.out.println("allowlogin======"+student.getPassword()+student.getFirstName());
+		if(student==null) upchecked=false;
+		else {
+			if(student.getPassword().equals(Password)) upchecked=true;
+			else upchecked=false;
+		}
+		
 
 		return upchecked;
 	}

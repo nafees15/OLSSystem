@@ -24,7 +24,7 @@ import com.ols.po.Student;
 import com.ols.dao.StudentDAO;
 import com.ols.dao.TeacherDAO;
 import com.ols.service.*;
-
+import com.ols.util.*;
 
 public class AddQuizAction extends HttpServlet{
 	private static final long serialVersionUID = 1L;
@@ -40,16 +40,7 @@ public class AddQuizAction extends HttpServlet{
 		//Quiz part
 		String QuizID = request.getParameter("QuizID");
 		String QuizName = request.getParameter("QuizName");
-
-		// convert string date format to Date
-		Date date = null;
-		try {
-			date = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH).parse(request.getParameter("DueTime"));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Date DueTime = date;
+		String QuizDueDate = request.getParameter("bdaytime");		
 		float QuizFullGrade = Float.parseFloat(request.getParameter("QuizFullGrade"));
 		int TotalQuestionNumber = Integer.parseInt(request.getParameter("QuizFullGrade"));
 		
@@ -60,15 +51,12 @@ public class AddQuizAction extends HttpServlet{
 		if(CourseID != ""){
 			quiz.setQuizID(QuizID);
 			quiz.setQuizName(QuizName);
-			
-			// convert util.date to sql.date
-			java.sql.Date sqlDate = new java.sql.Date(DueTime.getTime());
-			quiz.setDueTime(sqlDate);
+			quiz.setDueTime(QuizDueDate);
 			quiz.setQuizFullGrade(QuizFullGrade);
 			quiz.setTotalQuestionNumber(TotalQuestionNumber);
 			
 			quizServiceImpl.addNewQuiz(quiz);
-			arrQuiz = quizServiceImpl.getQuizByCourseID(CourseID);			
+			arrQuiz = quizServiceImpl.getQuizByCourseID(CourseID);	
 		}
 		
 		httpSession.setAttribute("QuizList", arrQuiz);

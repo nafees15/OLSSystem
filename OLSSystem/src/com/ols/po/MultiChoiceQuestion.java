@@ -1,6 +1,6 @@
 package com.ols.po;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * @author adil alim
@@ -13,7 +13,7 @@ public class MultiChoiceQuestion extends Question {
 	
 	private String QuestionID;
 	private String content;
-	private List<String> option;
+	private ArrayList<String> option;
 	private String correctAnswer;
 	private int point;
 	private String hints;
@@ -36,10 +36,10 @@ public class MultiChoiceQuestion extends Question {
 	public void setQuestionContent(String questionContent) {
 		content = questionContent;
 	}
-	public List<String> getMcOptions() {
+	public ArrayList<String> getMcOptions() {
 		return option;
 	}
-	public void setMcOptions(List<String> mcOptions) {
+	public void setMcOptions(ArrayList<String> mcOptions) {
 		this.option = mcOptions;
 	}
 	public String getCorrectAnswer() {

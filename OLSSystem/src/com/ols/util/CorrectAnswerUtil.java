@@ -22,4 +22,13 @@ public class CorrectAnswerUtil {
 		}
 		return correctAnswerInDB;
 	}
+	public static String correctAnswerMergeForTable(ArrayList<String> correctAnswerList) {
+		// TODO Auto-generated method stub
+		String correctAnswerInDB = "";
+		for (int i = 0; i < correctAnswerList.size(); i++) {
+			correctAnswerInDB = correctAnswerInDB+correctAnswerList.get(i);
+			
+		}
+		return correctAnswerInDB;
+	}
 }

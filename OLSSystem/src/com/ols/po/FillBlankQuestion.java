@@ -11,8 +11,15 @@ import java.util.ArrayList;
 public class FillBlankQuestion extends Question {
 
 	private static final long serialVersionUID = 1L;
-	
+	/*
 	private String QuestionID;
+	private String content;
+	private ArrayList<String> option;
+	private String correctAnswer;
+	private int point;
+	private String hints;*/
+	
+	private String questionID;
 	private ArrayList<String> content;
 	private ArrayList<String> option;
 	private ArrayList<String> correctAnswer;
@@ -21,13 +28,15 @@ public class FillBlankQuestion extends Question {
 	
 	private final int type=FILL_BLANK_TYPE;
 
-	
+	public void FillBlankQuestion(){
+		
+	}
 	
 	public String getQuestionID() {
-		return QuestionID;
+		return questionID;
 	}
 	public void setQuestionID(String questionID) {
-		QuestionID = questionID;
+		this.questionID = questionID;
 	}
 	public ArrayList<String> getContent() {
 		return content;

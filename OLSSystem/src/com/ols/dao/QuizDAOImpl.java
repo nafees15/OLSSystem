@@ -17,6 +17,8 @@ public class QuizDAOImpl implements QuizDAO{
 	
 	@Override
 	public ArrayList<Quiz> getQuizByCourseID(String CourseID) {	
+		dbc = new DBConnection();
+		connection = dbc.getConnection();
 		ArrayList<Quiz> quizList = new ArrayList<Quiz>();
 		String sql = "SELECT * from vi_quiz_quizlist where CourseID=?";
 		try {
@@ -42,6 +44,25 @@ public class QuizDAOImpl implements QuizDAO{
 		return quizList;
 	}
 
+	public void addQuizToCourse(Quiz quiz,String CourseID) {
+		dbc = new DBConnection();
+		connection = dbc.getConnection();
+		String sql = "insert into quizlist values(?,?)";
+		try {
+			
+			pstat = connection.prepareStatement(sql);
+			pstat.setString(1, quiz.getQuizID());
+			pstat.setString(2, CourseID);
+	
+			pstat.executeUpdate();
+			pstat.close();
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public void addQuiz(Quiz quiz) {
 		// TODO Auto-generated method stub
@@ -51,7 +72,8 @@ public class QuizDAOImpl implements QuizDAO{
 		private float QuizFullGrade;4
 		private int TotalQuestionNumber;5
 		*/
-		
+		dbc = new DBConnection();
+		connection = dbc.getConnection();
 		String sql = "insert into quiz values(?,?,?,?,?)";
 		try {
 			
@@ -74,6 +96,8 @@ public class QuizDAOImpl implements QuizDAO{
 	@Override
 	public void updateQuiz(Quiz quiz) {
 		// TODO Auto-generated method stub
+		dbc = new DBConnection();
+		connection = dbc.getConnection();
 		String sql = "update quiz set quizName=?, DueTime=?,QuizFullGrade=?,TotalQuestionNumber=? where quizID=?";
 		try {
 			
@@ -96,6 +120,8 @@ public class QuizDAOImpl implements QuizDAO{
 	@Override
 	public void deleteQuiz(String QuizID) {
 		// TODO Auto-generated method stub
+		dbc = new DBConnection();
+		connection = dbc.getConnection();
 		String sql = "delete from quiz where quizID=?";
 		try {		
 			pstat = connection.prepareStatement(sql);
@@ -118,6 +144,8 @@ public class QuizDAOImpl implements QuizDAO{
 		private String DueTime;	
 		private float QuizFullGrade;
 		private int TotalQuestionNumber;*/
+		dbc = new DBConnection();
+		connection = dbc.getConnection();
 		String sql = "select * from quiz where quizID=?";
 		Quiz quiz = new Quiz();
 		try {		

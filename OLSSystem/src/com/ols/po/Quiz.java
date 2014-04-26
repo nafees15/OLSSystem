@@ -11,13 +11,7 @@ public class Quiz implements Serializable{
 	
 	
 	
-	private static final long serialVersionUID = 1L;
-	
-	private String QuizID;
-	private String QuizName;
-	private String DueTime;	
-	private float QuizFullGrade;
-	private int TotalQuestionNumber;
+
 	
 	public Quiz(){
 		
@@ -25,43 +19,85 @@ public class Quiz implements Serializable{
 	public Quiz(String quizID, String quizName, String dueTime,
 			float quizFullGrade, int totalQuestionNumber) {
 		super();
-		QuizID = quizID;
-		QuizName = quizName;
-		DueTime = dueTime;
-		QuizFullGrade = quizFullGrade;
-		TotalQuestionNumber = totalQuestionNumber;
+		this.quizID = quizID;
+		this.quizName = quizName;
+		this.dueTime = dueTime;
+		this.quizFullGrade = quizFullGrade;
+		this.totalQuestionNumber = totalQuestionNumber;
+	}
+
+
+	
+	private static final long serialVersionUID = 1L;
+	
+	private String quizID;
+	private String quizName;
+	private String dueTime;	
+	private float quizFullGrade;
+	private int totalQuestionNumber;
+	
+	/**
+	 * @return the quizID
+	 */
+	public String getQuizID() {
+		return quizID;
+	}
+	/**
+	 * @param quizID the quizID to set
+	 */
+	public void setQuizID(String quizID) {
+		this.quizID = quizID;
+	}
+	/**
+	 * @return the quizName
+	 */
+	public String getQuizName() {
+		return quizName;
+	}
+	/**
+	 * @param quizName the quizName to set
+	 */
+	public void setQuizName(String quizName) {
+		this.quizName = quizName;
+	}
+	/**
+	 * @return the dueTime
+	 */
+	public String getDueTime() {
+		return dueTime;
+	}
+	/**
+	 * @param dueTime the dueTime to set
+	 */
+	public void setDueTime(String dueTime) {
+		this.dueTime = dueTime;
+	}
+	/**
+	 * @return the quizFullGrade
+	 */
+	public float getQuizFullGrade() {
+		return quizFullGrade;
+	}
+	/**
+	 * @param quizFullGrade the quizFullGrade to set
+	 */
+	public void setQuizFullGrade(float quizFullGrade) {
+		this.quizFullGrade = quizFullGrade;
+	}
+	/**
+	 * @return the totalQuestionNumber
+	 */
+	public int getTotalQuestionNumber() {
+		return totalQuestionNumber;
+	}
+	/**
+	 * @param totalQuestionNumber the totalQuestionNumber to set
+	 */
+	public void setTotalQuestionNumber(int totalQuestionNumber) {
+		this.totalQuestionNumber = totalQuestionNumber;
 	}
 	
-	public String getQuizID() {
-		return QuizID;
-	}
-	public void setQuizID(String quizID) {
-		QuizID = quizID;
-	}
-	public String getQuizName() {
-		return QuizName;
-	}
-	public void setQuizName(String quizName) {
-		QuizName = quizName;
-	}
-	public String getDueTime() {
-		return DueTime;
-	}
-	public void setDueTime(String dueTime) {
-		DueTime = dueTime;
-	}
-	public float getQuizFullGrade() {
-		return QuizFullGrade;
-	}
-	public void setQuizFullGrade(float quizFullGrade) {
-		QuizFullGrade = quizFullGrade;
-	}
-	public int getTotalQuestionNumber() {
-		return TotalQuestionNumber;
-	}
-	public void setTotalQuestionNumber(int totalQuestionNumber) {
-		TotalQuestionNumber = totalQuestionNumber;
-	}
+
 	
 	
 }

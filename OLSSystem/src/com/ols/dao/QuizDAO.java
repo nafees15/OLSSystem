@@ -1,6 +1,5 @@
 package com.ols.dao;
 
-import java.util.ArrayList;
 import java.util.*;
 
 import com.ols.po.*;
@@ -11,6 +10,7 @@ import com.ols.po.*;
 
 public interface QuizDAO {
 	public Quiz getQuizByQuizID(String QuizID);
+	public void addQuizToCourse(Quiz quiz,String CourseID);
 	public ArrayList<Quiz> getQuizByCourseID(String CourseID);	
 	public void addQuiz(Quiz quiz);
 	public void updateQuiz(Quiz quiz);

@@ -95,6 +95,8 @@ public class QuestionDAOImpl implements QuestionDAO {
 		private ArrayList<String> correctAnswer;
 		private int point;
 		private String hints;*/
+		dbc = new DBConnection();
+		connection = dbc.getConnection();
 		ArrayList<Question> questionList = new ArrayList<Question>();
 		String sql = "SELECT * from vi_fillblankquestion_questionlist where QuizID=?";
 		try {
@@ -131,6 +133,8 @@ public class QuestionDAOImpl implements QuestionDAO {
 	private String correctAnswer;
 	private int point;
 	private String hints;*/
+		dbc = new DBConnection();
+		connection = dbc.getConnection();
 		ArrayList<Question> questionList = new ArrayList<Question>();
 		String sql = "SELECT * from vi_multichoicequestion_questionlist where QuizID=?";
 		try {

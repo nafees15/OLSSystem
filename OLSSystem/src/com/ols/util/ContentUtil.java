@@ -24,4 +24,15 @@ public class ContentUtil {
 		}
 		return contentInDB;
 	}
+	public static String contentMergeForTable(ArrayList<String> contentList) {
+		// TODO Auto-generated method stub
+		// contentList = new ArrayList<String>();
+		String contentInDB = "";
+	//	String strip[] = contentInDB.split("[<splitter>]+");
+		for (int i = 0; i < contentList.size(); i++) {
+			contentInDB = contentInDB+contentList.get(i);
+			
+		}
+		return contentInDB;
+	}
 }

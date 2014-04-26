@@ -11,7 +11,7 @@ public class MultiChoiceQuestion extends Question {
 
 	private static final long serialVersionUID = 1L;
 	
-	private String QuestionID;
+	private String questionID;
 	private String content;
 	private ArrayList<String> option;
 	private String correctAnswer;
@@ -25,10 +25,10 @@ public class MultiChoiceQuestion extends Question {
 		return type;
 	}
 	public String getQuestionID() {
-		return QuestionID;
+		return questionID;
 	}
 	public void setQuestionID(String questionID) {
-		QuestionID = questionID;
+		this.questionID = questionID;
 	}
 	public String getQuestionContent() {
 		return content;

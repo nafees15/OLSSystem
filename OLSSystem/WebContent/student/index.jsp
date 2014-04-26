@@ -56,16 +56,23 @@ System.out.println("asdasd"+courses.get(0).getCourseName());
 				
 				<c:forEach items="${sessionScope['courses']}" var="Course">
                 <tr>
-                    <td><a href="courseQuiz?courseID=${Course.courseID}"><c:out value="${Course.courseID}" /></a></td>
+                    <td><a href="stuCourseMainAction?courseID=${Course.courseID}"><c:out value="${Course.courseID}" /></a></td>
                     <td><c:out value="${Course.courseName}" /></td>
-                    <td><a href="editCourse?courseID=${Course.courseID}"><img alt="as" src="..\img\edit.png"></a> <a href="deleteCourse?courseID=${Course.courseID}"><img alt="as" src="..\img\delete.png"></a></td>
+                    <td><a href="editCourse?courseID=${Course.courseID}"><img alt="as" src="${pageContext.request.contextPath}\img\edit.png"></a> <a href="deleteCourse?courseID=${Course.courseID}"><img alt="as" src="${pageContext.request.contextPath}\img\delete.png"></a></td>
                     
                 </tr>
                 </c:forEach>			
 				</table></div>
 			</div>
 			<div id="right">
-			
+			<div id="right-coulmn">
+			<h1>Announcement</h1> 
+				    <li>Announcement1</li>
+				    <li>Announcement</li>
+				    <li>Announcement</li>
+				    <li>Announcement</li>
+				    <li>Announcement</li>
+			</div>
 			</div>
 		</div>
 </div>

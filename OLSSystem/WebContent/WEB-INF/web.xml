@@ -14,7 +14,7 @@
 	</welcome-file-list>	
 	 
 	 
-	 <!--- Login-Logout-->
+	 <!--- Login-Logout __________________________________________________________-->
 	 <servlet>
     <servlet-name>LoginAction</servlet-name>
     <servlet-class>com.ols.action.LoginAction</servlet-class>
@@ -31,7 +31,43 @@
     <servlet-name>Logout</servlet-name>
     <url-pattern>/logoutaction</url-pattern>
   </servlet-mapping>
-  <!-- Add course  -->
+  
+  <!-- direct to -->
+    <servlet>
+    <servlet-name>CourseMain</servlet-name>
+    <servlet-class>com.ols.action.CourseMainAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CourseMain</servlet-name>
+    <url-pattern>/courseMainAction</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>QuizMain</servlet-name>
+    <servlet-class>com.ols.action.QuizMainAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QuizMain</servlet-name>
+    <url-pattern>/quizMainAction</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>StuCourseMain</servlet-name>
+    <servlet-class>com.ols.action.StuCourseMainAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StuCourseMain</servlet-name>
+    <url-pattern>/stuCourseMainAction</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>StuQuizMain</servlet-name>
+    <servlet-class>com.ols.action.StuQuizMainAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StuQuizMain</servlet-name>
+    <url-pattern>/stuQuizMainAction</url-pattern>
+  </servlet-mapping>
+  
+  <!--course -->
     <servlet>
    <servlet-name>AddCourseAction</servlet-name>
     <servlet-class>com.ols.action.AddCourseAction</servlet-class>

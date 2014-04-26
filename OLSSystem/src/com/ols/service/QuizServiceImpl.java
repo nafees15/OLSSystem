@@ -14,6 +14,10 @@ public class QuizServiceImpl implements QuizService{
 		return quizDAO.getQuizByCourseID(CourseID);
 	}
 
+	public void addQuizToCourse(Quiz quiz,String CourseID) {
+		quizDAO.addQuizToCourse(quiz, CourseID);
+	}
+	
 	@Override
 	public void addNewQuiz(Quiz quiz) {
 		// TODO Auto-generated method stub
@@ -30,6 +34,13 @@ public class QuizServiceImpl implements QuizService{
 	public void deleteQuiz(String QuizID) {
 		// TODO Auto-generated method stub
 		quizDAO.deleteQuiz(QuizID);
+	}
+
+	@Override
+	public Quiz getQuiz(String QuizID) {
+		// TODO Auto-generated method stub
+		
+		return quizDAO.getQuizByQuizID(QuizID);
 	}
 
 }

@@ -36,18 +36,16 @@ xmlhttp.send();
 </head>
 <body>
 <%
-Course course=(Course)request.getAttribute("course");
-String courseID=course.getCourseID();
-ArrayList<Quiz> quizList=new ArrayList<Quiz>();
-quizList=(ArrayList<Quiz>)session.getAttribute("quizList");
+Quiz quiz=(Quiz)request.getAttribute("quiz");
 
-System.out.println(quizList.get(1).getQuizID());
+ArrayList<QuestionTable> questionList=new ArrayList<QuestionTable>();
+questionList =(ArrayList<QuestionTable>)session.getAttribute("questionList");
+System.out.println("QuizMain"+questionList.get(1).getQuestionID());
 %>
 <div id="page">
 <div id="wrapper">
 		<div id="header">
-			<div id="title">
-			
+			<div id="title">			
 			<div id="user_nav">
 					<div id='nav'>
 					<ul>					   
@@ -55,7 +53,7 @@ System.out.println(quizList.get(1).getQuizID());
 					   <li class='active'><a href='index.jsp'><span>Course List</span></a></li>
 					   <li class='active'><a href='index.jsp'><span>Serch Quiz</span></a></li>
 					   <li class='last'><a href='#'><span>Help</span></a></li>
-					   <div id="normala"><h3><%out.print("["+course.getCourseID()+"]"); %></h3><a href="logoutaction">&nbsp;&nbsp;&nbsp;<img alt="as" src="${pageContext.request.contextPath}\img\logout.png">Logout&nbsp;&nbsp;&nbsp;</a>
+					   <div id="normala"><h3><%out.print("["+quiz.getQuizID()+"]");%></h3><a href="logoutaction">&nbsp;&nbsp;&nbsp;<img alt="as" src="${pageContext.request.contextPath}\img\logout.png">Logout</a>
 					</div>				   
 					
 					</ul>
@@ -72,20 +70,19 @@ System.out.println(quizList.get(1).getQuizID());
 			    <div id="course_list">
 				<table id="c_table">
 				<tr>
-				  <th width=20>Quiz ID</th>
-				  <th width=50>Quiz Name</th>
-				  <th width=30>Question No.</th>		
-				  <th width=60>Due Date</th>
+				  <th width=20>Question ID</a></th>
+				  <th width=50>Question Content</th>
+				  <th width=30>Correct</th>		
 				  <th width=15>Edit</th>
 				  </tr>
-				<c:forEach items="${sessionScope['quizList']}" var="Quiz">
+				<c:forEach items="${sessionScope['questionList']}" var="Question">
                 <tr>
-                
-                    <td><a href="quizMainAction?quizID=${Quiz.quizID}"><c:out value="${Quiz.quizID}" /></a></td>
-                    <td><c:out value="${Quiz.quizName}" /></td>
-                    <td><c:out value="${Quiz.totalQuestionNumber}" /></td>
-                    <td><c:out value="${Quiz.dueTime}" /></td>
-                    <td><a href="editQuiz?quizID=${Quiz.quizID}"><img alt="as" src="${pageContext.request.contextPath}\img\edit.png"></a> <a href="deleteCourse?courseID=${Quiz.quizID}"><img alt="as" src="${pageContext.request.contextPath}\img\delete.png"></a></td>
+                    <td><c:out value="${Question.questionID}" /></td>
+                    <td><c:out value="${Question.content}" /></td>                    
+                    <td><c:out value="${Question.correctAnswer}" /></td>
+                    <td><a href="editQuestion?quiestionID=${Question.questionID}"><img alt="as" src="${pageContext.request.contextPath}\img\edit.png"></a> 
+                    <a href="deleteQuestion?quistionID=${Question.questionID}"><img alt="as" src="${pageContext.request.contextPath}\img\delete.png"></a>
+                    </td>
                     
                 </tr>
             	</c:forEach>

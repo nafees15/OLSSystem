@@ -16,8 +16,6 @@ import javax.servlet.http.HttpSession;
 import com.ols.po.Student;
 import com.ols.po.Teacher;
 import com.ols.po.Course;
-import com.ols.dao.StudentDAO;
-import com.ols.dao.TeacherDAO;
 import com.ols.service.*;
 
 public class LoginAction extends HttpServlet{

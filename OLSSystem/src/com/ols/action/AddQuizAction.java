@@ -35,31 +35,32 @@ public class AddQuizAction extends HttpServlet{
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 		HttpSession httpSession = request.getSession();
+		
 		String CourseID = request.getParameter("CourseID");
 		
 		//Quiz part
 		String QuizID = request.getParameter("QuizID");
 		String QuizName = request.getParameter("QuizName");
-		String QuizDueDate = request.getParameter("bdaytime");		
-		float QuizFullGrade = Float.parseFloat(request.getParameter("QuizFullGrade"));
-		int TotalQuestionNumber = Integer.parseInt(request.getParameter("QuizFullGrade"));
+		String QuizDueDate = request.getParameter("duetime");		
+		//float QuizFullGrade = Float.parseFloat(request.getParameter("QuizFullGrade"));
+		//int TotalQuestionNumber = Integer.parseInt(request.getParameter("QuizFullGrade"));
 		
 		Quiz quiz = new Quiz();
 		QuizServiceImpl quizServiceImpl = new QuizServiceImpl();
-		ArrayList<Quiz> arrQuiz = new ArrayList<Quiz>();
+		ArrayList<Quiz> quizList = new ArrayList<Quiz>();
 		
 		if(CourseID != ""){
 			quiz.setQuizID(QuizID);
 			quiz.setQuizName(QuizName);
 			quiz.setDueTime(QuizDueDate);
-			quiz.setQuizFullGrade(QuizFullGrade);
-			quiz.setTotalQuestionNumber(TotalQuestionNumber);
+			//quiz.setQuizFullGrade(QuizFullGrade);
+			//quiz.setTotalQuestionNumber(TotalQuestionNumber);
 			
 			quizServiceImpl.addNewQuiz(quiz);
-			arrQuiz = quizServiceImpl.getQuizByCourseID(CourseID);	
+			quizList = quizServiceImpl.getQuizByCourseID(CourseID);	
 		}
 		
-		httpSession.setAttribute("QuizList", arrQuiz);
+		httpSession.setAttribute("quizList", quizList);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/teacher/addQuizTable.jsp");
 		dispatcher.forward(request, response);
 	}

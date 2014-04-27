@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+   <%@ page import="java.util.*"%>
     <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -10,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <title>Quiz List</title>
-<link media="all" rel="stylesheet" type="text/css" href="../css/userindex.css">
+<link media="all" rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/userindex.css">
 <link rel="shortcut icon" href="favicon.ico" >
 <link rel="icon" type="image/gif" href="icon.gif" >
 <script>  
@@ -36,6 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  </script> 
 </head>
 <body>
+<% HashMap<String,String> questionList=(HashMap<String,String>)session.getAttribute("questionList");%>
 <div id="page">
 <div id="wrapper">
 		<div id="header">
@@ -45,8 +47,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  			</div>
 		
 		</div>
-		<div id="content">	
-				
+		<div id="content">
+		
+				<%				
+				int index=1;			
+				List<Map.Entry<String, String>> list = new ArrayList<Map.Entry<String, String>>(questionList.entrySet());		      
+		        Collections.shuffle(list);
+		        for (Map.Entry<String, String> entry : list) {
+		            out.print(index+ "" + entry.getValue());
+		            index++;
+		        }
+				%>
 			
 			
 			</div>

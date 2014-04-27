@@ -17,6 +17,7 @@ import com.ols.po.*;
 import com.ols.dao.StudentDAO;
 import com.ols.dao.TeacherDAO;
 import com.ols.service.*;
+import com.ols.util.QuestionUtil;
 
 public class StuQuizMainAction extends HttpServlet{
 	
@@ -36,18 +37,21 @@ public class StuQuizMainAction extends HttpServlet{
 			quizID = "";
 		}
 		
+		HashMap<String, String> totalQuestion = null;
 		QuizServiceImpl quizServiceImpl = new QuizServiceImpl();
 		QuestionServiceImpl questionServiceImpl = new QuestionServiceImpl();
 		ArrayList<Question> arrayListQuestion = new ArrayList<Question>();
 		
+		
 		if(quizID != null){
 			arrayListQuestion = questionServiceImpl.getQuestionListByQuizID(quizID);
+			totalQuestion = QuestionUtil.questionDisplay(arrayListQuestion);
 			quiz =  quizServiceImpl.getQuiz(quizID);
 			}
 		
-		request.setAttribute("quiz", quiz);
-		httpSession.setAttribute("questionList", arrayListQuestion);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/student/questionMain.jsp");
+		httpSession.setAttribute("quiz", quiz);
+		httpSession.setAttribute("questionList", totalQuestion);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/student/quizpage.jsp");
 		dispatcher.forward(request, response);
 	}
 }

@@ -28,7 +28,9 @@ public class SignupAction extends HttpServlet{
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+		
 		HttpSession httpSession = request.getSession();
+		
 		String netID = request.getParameter("NetID");
 		String sex = request.getParameter("Sex");
 		String firstname = request.getParameter("FirstName");
@@ -41,43 +43,6 @@ public class SignupAction extends HttpServlet{
 		
 		String message = "";
 		
-		if(netID == null){
-			System.out.println("netId is empty.");
-			netID = "";
-		}
-		if( sex == null){
-			System.out.println("sex is empty.");
-			sex = "";
-		}
-		if( firstname == null){
-			System.out.println("first name is empty.");
-			firstname = "";
-		}
-		if( lastname == null){
-			System.out.println("last name is empty.");
-			lastname = "";
-		}
-		if( dob == null){
-			System.out.println("dob is empty.");			
-			dob = "";
-		}
-		if( email == null){
-			System.out.println("email is empty.");			
-			email = "";
-		}
-		if( phonenumber == null){
-			System.out.println("phone number is empty.");			
-			phonenumber = "";
-		}
-		if( password == null ){
-			System.out.println("password is empty");
-			password = "";
-		}
-		if( confirmpassword == null){
-			System.out.println(" confirmpassword is not matched with password.");
-			confirmpassword = "";
-		}
-		
 		Student student = new Student();
 		StudentServiceImpl studentServiceImpl = new StudentServiceImpl();
 		if( studentServiceImpl.getStudent(netID) != null){
@@ -85,25 +50,32 @@ public class SignupAction extends HttpServlet{
 			message = "student already exists.";
 		}
 		else if(sex.length() == 0){
+			System.out.println("Sex info is empty.");
 			message = "sex is empty.";
 		}
 		else if(firstname.length() == 0){
+			System.out.println("first name need to fill in.");
 			message = "first name is empty."; 
 		}
 		else if(lastname.length() == 0){
+			System.out.println("last name need to fill in.");
 			message = "last name is empty."; 
 		}
 		else if(dob.length() == 0){
+			System.out.println("Birth of date is empty.");
 			message = "dob is empty.";
 		}
 		else if(email.length()== 0){
+			System.out.println("email address is empty.");
 			message = "email is empty.";
 		}
 		else if(phonenumber.length()== 0){
+			System.out.println("Phone number is empty.");
 			message = "phone number is empty.";
 		}
 		else if(!confirmpassword.equals(password)){
-			message = "student already exists.";
+			System.out.println("confirmpassword is not matched with password.");
+			message = "confirmpassword is not matched with password.";
 		}
 		else{
 			student.setStudentID(netID);

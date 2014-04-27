@@ -13,6 +13,13 @@ public class OptionUtil {
 		}
 		return optionList;
 	}
+	
+	public static String[] optionSubSplit(String optionInOneBlank) {
+		// TODO Auto-generated method stub
+		String strip[] = optionInOneBlank.split("<op>");
+		return strip;
+	}
+	
 	public static String optionMerge(ArrayList<String> optionList) {
 		// TODO Auto-generated method stub
 		// contentList = new ArrayList<String>();

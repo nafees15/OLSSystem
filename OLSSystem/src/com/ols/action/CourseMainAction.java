@@ -51,9 +51,9 @@ public class CourseMainAction extends HttpServlet{
 			arrQuiz = quizServiceImpl.getQuizByCourseID(courseID);
 			course =  courseServiceImpl.getCourse(courseID);
 			}
-		System.out.println(arrQuiz.size());
-		System.out.println(arrQuiz.get(1).getQuizID());
-		request.setAttribute("course", course);
+		//System.out.println(arrQuiz.size());
+		//System.out.println(arrQuiz.get(0).getQuizID());
+		httpSession.setAttribute("course", course);
 		httpSession.setAttribute("quizList", arrQuiz);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/teacher/courseMain.jsp");
 		dispatcher.forward(request, response);

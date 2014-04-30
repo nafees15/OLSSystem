@@ -14,6 +14,9 @@
 	</welcome-file-list>	
 	 
 	 
+	 	
+	
+	 
 	 <!--- Login-Logout __________________________________________________________-->
 	 <servlet>
     <servlet-name>LoginAction</servlet-name>
@@ -76,6 +79,7 @@
     <servlet-name>AddCourseAction</servlet-name>
     <url-pattern>/addCourseAction</url-pattern>
   </servlet-mapping>
+  
   <!-- Edit Course- -->
   <servlet>
    <servlet-name>EditCourseAction</servlet-name>
@@ -86,4 +90,30 @@
     <url-pattern>/editCourse</url-pattern>
   </servlet-mapping>
   
+  <!-- Quiz -->
+    <servlet>
+   <servlet-name>AddQuizAction</servlet-name>
+    <servlet-class>com.ols.action.AddQuizAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddQuizAction</servlet-name>
+    <url-pattern>/addQuizAction</url-pattern>
+  </servlet-mapping>
+  <!-- question -->
+  <servlet>
+   <servlet-name>AddFillBlankAction</servlet-name>
+    <servlet-class>com.ols.action.AddFillBlankAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddFillBlankAction</servlet-name>
+    <url-pattern>/addFillBlankAction</url-pattern>
+  </servlet-mapping>
+    <servlet>
+   <servlet-name>AddMultiChoiceAction</servlet-name>
+    <servlet-class>com.ols.action.AddMultiChoiceAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddMultiChoiceAction</servlet-name>
+    <url-pattern>/addMultiChoiceAction</url-pattern>
+  </servlet-mapping>
 </web-app>

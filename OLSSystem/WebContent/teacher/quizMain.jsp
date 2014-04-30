@@ -25,7 +25,7 @@ function loadXMLDoc(filename)
 	  } 
 	xmlhttp.onreadystatechange=function(){ 
 	  if(xmlhttp.readyState==4 && xmlhttp.status==200){
-		document.getElementById("edit").innerHTML=xmlhttp.responseText;
+		document.getElementById("edit_div").innerHTML=xmlhttp.responseText;
       		}
 	}
 xmlhttp.open("GET",filename,true);
@@ -36,11 +36,11 @@ xmlhttp.send();
 </head>
 <body>
 <%
-Quiz quiz=(Quiz)request.getAttribute("quiz");
+Quiz quiz=(Quiz)session.getAttribute("quiz");
 
 ArrayList<QuestionTable> questionList=new ArrayList<QuestionTable>();
 questionList =(ArrayList<QuestionTable>)session.getAttribute("questionList");
-System.out.println("QuizMain"+questionList.get(1).getQuestionID());
+//System.out.println("QuizMain"+questionList.get(1).getQuestionID());
 %>
 <div id="page">
 <div id="wrapper">
@@ -64,7 +64,8 @@ System.out.println("QuizMain"+questionList.get(1).getQuestionID());
 		<div id="content">
 			
 				<div id="edit">
-			 		<button onclick="loadXMLDoc('addQuizTable.jsp')">+Add Quiz</button>
+			 		<button id="button" onclick="loadXMLDoc('${pageContext.request.contextPath}/teacher/MultiChoiceTable.jsp')"><img alt="as" src="${pageContext.request.contextPath}\img\add.png">AddMultiChoiceQuestion</button>
+			 		<button id="button" onclick="loadXMLDoc('${pageContext.request.contextPath}/teacher/FillBlankTable.jsp')"><img alt="as" src="${pageContext.request.contextPath}\img\add.png">AddFillBlankQuestion</button>
 			 		<div id="edit_div"> </div>
 			    </div>
 			    <div id="course_list">

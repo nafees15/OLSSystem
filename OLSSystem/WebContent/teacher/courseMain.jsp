@@ -36,12 +36,13 @@ xmlhttp.send();
 </head>
 <body>
 <%
-Course course=(Course)request.getAttribute("course");
-String courseID=course.getCourseID();
+Course course=(Course)session.getAttribute("course");
+String courseID=(String)course.getCourseID();
+
 ArrayList<Quiz> quizList=new ArrayList<Quiz>();
 quizList=(ArrayList<Quiz>)session.getAttribute("quizList");
 
-System.out.println(quizList.get(1).getQuizID());
+//System.out.println(quizList.get(1).getQuizID());
 %>
 <div id="page">
 <div id="wrapper">
@@ -55,7 +56,7 @@ System.out.println(quizList.get(1).getQuizID());
 					   <li class='active'><a href='index.jsp'><span>Course List</span></a></li>
 					   <li class='active'><a href='index.jsp'><span>Serch Quiz</span></a></li>
 					   <li class='last'><a href='#'><span>Help</span></a></li>
-					   <div id="normala"><h3><%out.print("["+course.getCourseID()+"]"); %></h3><a href="logoutaction">&nbsp;&nbsp;&nbsp;<img alt="as" src="${pageContext.request.contextPath}\img\logout.png">Logout&nbsp;&nbsp;&nbsp;</a>
+					   <div id="normala"><h3><%out.print("["+course.getCourseID()+"]"); %><a href="logoutaction">&nbsp;&nbsp;&nbsp;<img alt="as" src="${pageContext.request.contextPath}\img\logout.png">Logout&nbsp;&nbsp;&nbsp;</a></h3>
 					</div>				   
 					
 					</ul>
@@ -66,7 +67,7 @@ System.out.println(quizList.get(1).getQuizID());
 		<div id="content">
 			
 				<div id="edit">
-			 		<button onclick="loadXMLDoc('addQuizTable.jsp')">+Add Quiz</button>
+			 		<button id="button" onclick="loadXMLDoc('${pageContext.request.contextPath}/teacher/addQuizTable.jsp')"><img alt="as" src="${pageContext.request.contextPath}\img\add.png">Add Quiz</button>
 			 		<div id="edit_div"> </div>
 			    </div>
 			    <div id="course_list">

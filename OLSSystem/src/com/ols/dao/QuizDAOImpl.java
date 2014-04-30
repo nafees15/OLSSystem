@@ -51,8 +51,9 @@ public class QuizDAOImpl implements QuizDAO{
 		try {
 			
 			pstat = connection.prepareStatement(sql);
-			pstat.setString(1, quiz.getQuizID());
-			pstat.setString(2, CourseID);
+			pstat.setString(1, CourseID);
+			pstat.setString(2, quiz.getQuizID());
+			
 	
 			pstat.executeUpdate();
 			pstat.close();

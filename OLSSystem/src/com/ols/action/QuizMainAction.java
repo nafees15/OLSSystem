@@ -51,7 +51,7 @@ public class QuizMainAction extends HttpServlet{
 			}
 		
 		ArrayList<QuestionTable> questionList=questionServiceImpl.getQuestionTable(arrayListQuestion);
-		request.setAttribute("quiz", quiz);
+		httpSession.setAttribute("quiz", quiz);
 		httpSession.setAttribute("questionList", questionList);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/teacher/quizMain.jsp");
 		dispatcher.forward(request, response);

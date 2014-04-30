@@ -163,7 +163,7 @@ public class QuestionDAOImpl implements QuestionDAO {
 	}
 
 	@Override
-	public void addFillBlankQuestion(Question question) {
+	public String addFillBlankQuestion(Question question, String quizID) {
 		// TODO Auto-generated method stub
 		/*private String QuestionID;1
 		private List<String> content;2
@@ -175,30 +175,48 @@ public class QuestionDAOImpl implements QuestionDAO {
 		FillBlankQuestion fillBlankQuestion =(FillBlankQuestion) question;
 		dbc = new DBConnection();
 		connection = dbc.getConnection();
+		String returnStr = "";
 		String sql = "insert into fillblankquestion values(?,?,?,?,?,?)";
 		try {
 			pstat = connection.prepareStatement(sql);
-			pstat.setString(1, fillBlankQuestion.getQustionID());
+			pstat.setString(1, fillBlankQuestion.getQuestionID());
 			pstat.setString(2, ContentUtil.contentMerge(fillBlankQuestion.getContent()));
 			pstat.setString(3, OptionUtil.optionMerge(fillBlankQuestion.getOption()));
 			pstat.setString(4, CorrectAnswerUtil.correctAnswerMerge(fillBlankQuestion.getCorrectAnswer()));
 			pstat.setInt(5, fillBlankQuestion.getPoint());
 			pstat.setString(6, fillBlankQuestion.getHints());
-			pstat.executeUpdate();
-			
-				pstat.close();
-				connection.close();
-
+			if(pstat.executeUpdate()!=0) {
+				sql = "select QUESTIONID from fillblankquestion where CONTENT=?";
+				pstat = connection.prepareStatement(sql);
+				pstat.setString(1, ContentUtil.contentMerge(fillBlankQuestion.getContent()));
+				ResultSet urs = (ResultSet) pstat.executeQuery();
+				if (urs.next()) { returnStr = urs.getString(1); }
+				urs.close();
+				
+				sql = "insert into questionlist values(?,?)";
+				pstat = connection.prepareStatement(sql);
+				pstat.setString(1,quizID);
+				pstat.setString(2, returnStr);
+				pstat.executeUpdate();
+				
+				sql = "update quiz set totalquestionnumber=totalquestionnumber+1 where quizID=?";
+				pstat = connection.prepareStatement(sql);
+				pstat.setString(1, quizID);
+				pstat.executeUpdate();
+			}	
+			pstat.close();
+			connection.close();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return returnStr;
 	
 	}
 
 	@Override
-	public void addMultiChoiceQuestion(Question question) {
+	public String addMultiChoiceQuestion(Question question, String quizID) {
 		// TODO Auto-generated method stub
 		/*		
 		private String QuestionID;1
@@ -211,25 +229,44 @@ public class QuestionDAOImpl implements QuestionDAO {
 		MultiChoiceQuestion multiChoiceQuestion =(MultiChoiceQuestion) question;
 		dbc = new DBConnection();
 		connection = dbc.getConnection();
-		String sql = "insert into fillblankquestion values(?,?,?,?,?,?)";
+		String returnStr = "";
+		String sql = "insert into MultiChoiceQuestion values(?,?,?,?,?,?)";
 		try {
+			System.out.println("qid in qDAO"+multiChoiceQuestion.getQuestionID());
 			pstat = connection.prepareStatement(sql);
-			pstat.setString(1, multiChoiceQuestion.getQustionID());
+			pstat.setString(1, multiChoiceQuestion.getQuestionID());
 			pstat.setString(2, multiChoiceQuestion.getQuestionContent());
 			pstat.setString(3, OptionUtil.optionMerge(multiChoiceQuestion.getMcOptions()));
 			pstat.setString(4, multiChoiceQuestion.getCorrectAnswer());
 			pstat.setInt(5, multiChoiceQuestion.getPoint());
 			pstat.setString(6, multiChoiceQuestion.getHints());
-			pstat.executeUpdate();
-			
-				pstat.close();
-				connection.close();
-
+			if(pstat.executeUpdate()!=0) {
+				sql = "select QUESTIONID from multichoicequestion where CONTENT=?";
+				pstat = connection.prepareStatement(sql);
+				pstat.setString(1, multiChoiceQuestion.getQuestionContent());
+				ResultSet urs = (ResultSet) pstat.executeQuery();
+				if (urs.next()) { returnStr = urs.getString(1); }
+				urs.close();
+				
+				sql = "insert into questionlist values(?,?)";
+				pstat = connection.prepareStatement(sql);
+				pstat.setString(1,quizID);
+				pstat.setString(2, returnStr);
+				pstat.executeUpdate();
+				
+				sql = "update quiz set totalquestionnumber=totalquestionnumber+1 where quizID=?";
+				pstat = connection.prepareStatement(sql);
+				pstat.setString(1, quizID);
+				pstat.executeUpdate();
+			}	
+			pstat.close();
+			connection.close();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return returnStr;
 	}
 
 	@Override
@@ -248,7 +285,7 @@ public class QuestionDAOImpl implements QuestionDAO {
 		String sql = "update fillblankquestion set content=?,option=?,correctAnswer=?,point=?,hints=?where QuestionID=?";
 		try {
 			pstat = connection.prepareStatement(sql);
-			pstat.setString(6, fillBlankQuestion.getQustionID());
+			pstat.setString(6, fillBlankQuestion.getQuestionID());
 			pstat.setString(1, ContentUtil.contentMerge(fillBlankQuestion.getContent()));
 			pstat.setString(2, OptionUtil.optionMerge(fillBlankQuestion.getOption()));
 			pstat.setString(3, CorrectAnswerUtil.correctAnswerMerge(fillBlankQuestion.getCorrectAnswer()));
@@ -283,7 +320,7 @@ public class QuestionDAOImpl implements QuestionDAO {
 		String sql = "update multichoicequestion set content=?,option=?,correctAnswer=?,point=?,hints=?where QuestionID=?";
 		try {
 			pstat = connection.prepareStatement(sql);
-			pstat.setString(6, multiChoiceQuestion.getQustionID());
+			pstat.setString(6, multiChoiceQuestion.getQuestionID());
 			pstat.setString(1, multiChoiceQuestion.getQuestionContent());
 			pstat.setString(2, OptionUtil.optionMerge(multiChoiceQuestion.getMcOptions()));
 			pstat.setString(3, multiChoiceQuestion.getCorrectAnswer());
@@ -315,7 +352,12 @@ public class QuestionDAOImpl implements QuestionDAO {
 			sql = "delete * from questionlist where QuestionID=?";
 			pstat = connection.prepareStatement(sql);
 			pstat.setString(1, QuestionID);
-			pstat.executeUpdate();
+			if(pstat.executeUpdate()!=0) {
+				sql = "update quiz set totalquestionnumber=totalquestionnumber-1 where quizID=(select quizID from questionlist where questionID=?);";
+				pstat = connection.prepareStatement(sql);
+				pstat.setString(1, QuestionID);
+				pstat.executeUpdate();
+			}
 			
 				pstat.close();
 				connection.close();
@@ -341,7 +383,12 @@ public class QuestionDAOImpl implements QuestionDAO {
 			sql = "delete * from questionlist where QuestionID=?";
 			pstat = connection.prepareStatement(sql);
 			pstat.setString(1, QuestionID);
-			pstat.executeUpdate();
+			if(pstat.executeUpdate()!=0) {
+				sql = "update quiz set totalquestionnumber=totalquestionnumber-1 where quizID=(select quizID from questionlist where questionID=?);";
+				pstat = connection.prepareStatement(sql);
+				pstat.setString(1, QuestionID);
+				pstat.executeUpdate();
+			}
 			
 				pstat.close();
 				connection.close();

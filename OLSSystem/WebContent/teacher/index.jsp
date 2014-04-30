@@ -74,7 +74,7 @@ courses = (ArrayList<Course>)session.getAttribute("courses");
 					   <li class='active'><a href='index.jsp'><span>Course List</span></a></li>
 					   <li class='active'><a href='index.jsp'><span>Search Course</span></a></li>
 					   <li class='last'><a href='#'><span>Help</span></a></li>
-					   <div id="normala"><h3><%out.print("["+teacher.getFirstName()+","+teacher.getLastName()+"]"); %><a href="logoutaction">&nbsp;&nbsp;&nbsp;<img alt="as" src="${pageContext.request.contextPath}\img\logout.png">Logout&nbsp;&nbsp;&nbsp;</a></h3>
+					   <div id="normala"><%out.print("["+teacher.getFirstName()+","+teacher.getLastName()+"]"); %><a href="logoutaction">&nbsp;&nbsp;&nbsp;<img alt="as" src="${pageContext.request.contextPath}\img\logout.png">Logout&nbsp;&nbsp;&nbsp;</a>
 					</div>
 					</ul>
 					</div>

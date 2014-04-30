@@ -32,8 +32,7 @@ System.out.println("asdasd"+courses.get(0).getCourseName());
 			
 			<div id="user_nav">
 					<div id='nav'>
-					<ul>
-					   
+					<ul>					   
 					   <li class='active'><a href='../index.jsp'><span>Home</span></a></li>
 					   <li class='active'><a href='index.jsp'><span>Course List</span></a></li>
 					   <li class='active'><a href='index.jsp'><span>Serch Course</span></a></li>

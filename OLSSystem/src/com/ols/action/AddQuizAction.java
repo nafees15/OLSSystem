@@ -36,8 +36,10 @@ public class AddQuizAction extends HttpServlet{
 	public void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 		HttpSession httpSession = request.getSession();
 		
-		String CourseID = request.getParameter("CourseID");
+		Course course  =(Course) httpSession.getAttribute("course");
 		
+		String CourseID=course.getCourseID();
+		System.out.println("AddQuiz----------"+CourseID);
 		//Quiz part
 		String QuizID = request.getParameter("QuizID");
 		String QuizName = request.getParameter("QuizName");
@@ -49,19 +51,19 @@ public class AddQuizAction extends HttpServlet{
 		QuizServiceImpl quizServiceImpl = new QuizServiceImpl();
 		ArrayList<Quiz> quizList = new ArrayList<Quiz>();
 		
-		if(CourseID != ""){
+		if(CourseID != null){
 			quiz.setQuizID(QuizID);
 			quiz.setQuizName(QuizName);
 			quiz.setDueTime(QuizDueDate);
 			//quiz.setQuizFullGrade(QuizFullGrade);
 			//quiz.setTotalQuestionNumber(TotalQuestionNumber);
 			
-			quizServiceImpl.addNewQuiz(quiz);
+			quizServiceImpl.addNewQuiz(quiz,CourseID);
 			quizList = quizServiceImpl.getQuizByCourseID(CourseID);	
 		}
 		
 		httpSession.setAttribute("quizList", quizList);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/teacher/addQuizTable.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/teacher/CourseMain.jsp");
 		dispatcher.forward(request, response);
 	}
 }

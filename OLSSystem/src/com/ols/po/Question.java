@@ -10,16 +10,16 @@ public class Question implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private String qustionID;
+	private String questionID;
 	private int type; 
 	public static final int MULTI_CHOICE_TYPE=1;
 	public static final int FILL_BLANK_TYPE=2;
 	
 	public String getQustionID() {
-		return qustionID;
+		return questionID;
 	}
-	public void setQustionID(String qustionID) {
-		this.qustionID = qustionID;
+	public void setQuestionID(String questionID) {
+		this.questionID = questionID;
 	}
 	public int getType() {
 		return type;

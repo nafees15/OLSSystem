@@ -15,8 +15,8 @@ public interface QuestionDAO {
 	public ArrayList<Question> getFillBlankQuestionList(String QuizID);
 	public ArrayList<Question> getMultiChoiceQuestionList(String QuizID);	
 
-	public void addFillBlankQuestion(Question question);
-	public void addMultiChoiceQuestion(Question question);
+	public String addFillBlankQuestion(Question question, String quizID);
+	public String addMultiChoiceQuestion(Question question, String quizID);
 	public void updateFillBlankQuestion(Question question);
 	public void updateMultiChoiceQuestion(Question question);
 	public void deleteFillBlankQuestion(String QuestionID);

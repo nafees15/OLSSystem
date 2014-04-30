@@ -14,14 +14,13 @@ public class QuizServiceImpl implements QuizService{
 		return quizDAO.getQuizByCourseID(CourseID);
 	}
 
-	public void addQuizToCourse(Quiz quiz,String CourseID) {
-		quizDAO.addQuizToCourse(quiz, CourseID);
-	}
+	
 	
 	@Override
-	public void addNewQuiz(Quiz quiz) {
+	public void addNewQuiz(Quiz quiz, String CourseID) {
 		// TODO Auto-generated method stub
 		quizDAO.addQuiz(quiz);
+		quizDAO.addQuizToCourse(quiz, CourseID);
 	}
 
 	@Override

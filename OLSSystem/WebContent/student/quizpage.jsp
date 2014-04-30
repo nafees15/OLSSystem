@@ -10,12 +10,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<title>Quiz List</title>
+<title>Quiz Page</title>
 <link media="all" rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/userindex.css">
 <link rel="shortcut icon" href="favicon.ico" >
 <link rel="icon" type="image/gif" href="icon.gif" >
-<script>  
-      
+
+
+<script  language= "Javascript"> 
+
+document.onkeydown = function (e) {
+	var ev = window.event || e;
+	var code = ev.keyCode || ev.which;
+	if (code == 116) {
+		if(ev.preventDefault) {
+			ev.preventDefault();
+		} else {
+			ev.keyCode = 0;
+			ev.returnValue = false;
+		}
+	}
+}
+
+
+    
     var leftTime = <%=Integer.parseInt("3600")%>;  
       
     function showLeftTime(){  
@@ -36,7 +53,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
  </script> 
 </head>
-<body>
+<body onkeydown="onKeyDown()">
+<script  language= "Javascript"> 
+
+function KeyDown(event){  
+    
+    event= event ? event : (window.event ? window.event : null);// ie firefox都可以使用的事件
+  
+    if (event.keyCode==116){ //屏蔽 F5 刷新键  
+        alert("禁止F5刷新网页！");  
+        event.keyCode=0;  
+        event.returnValue=false;  
+    }  
+  
+    if ((event.ctrlKey)&&(event.keyCode==82)){ //屏蔽 Ctrl+R  
+        alert("禁止Ctrl+R刷新网页！");  
+        event.returnValue=false;  
+    }  
+  
+    if ((event.shiftKey)&&(event.keyCode==121)){ //屏蔽 shift+F10  
+        alert("禁止shift+F10刷新网页！");  
+        event.returnValue=false;  
+    }  
+} 
+// disable mouse right button
+function Click()
+{
+	alert("Forbidden to use Click Right Button!!! ");
+    window.event.returnValue=false;
+}
+document.oncontextmenu=Click;
+
+
+</script>
 <% HashMap<String,String> questionList=(HashMap<String,String>)session.getAttribute("questionList");%>
 <div id="page">
 <div id="wrapper">

@@ -13,7 +13,6 @@ import com.ols.util.CorrectAnswerUtil;
 public class QuestionServiceImpl implements QuestionService{
 	
 	private QuestionDAOImpl questionDAO=new QuestionDAOImpl();
-	
 	@Override
 	public 	ArrayList<QuestionTable> getQuestionTable(ArrayList<Question> allQuestionList) {
 		/*private String QuestionID;
@@ -24,24 +23,16 @@ public class QuestionServiceImpl implements QuestionService{
 			QuestionTable questionTable = new QuestionTable();
 			if(question.getType()==Question.FILL_BLANK_TYPE) {
 				FillBlankQuestion fillBlankQuestion = (FillBlankQuestion)question;
-				System.out.println(question.getType()+" question Service "+fillBlankQuestion.getQuestionID());
-				//String questionID=(String)fillBlankQuestion.getQuestionID();
 				questionTable.setQuestionID(fillBlankQuestion.getQuestionID());
-				
 				questionTable.setContent(ContentUtil.contentMergeForTable(fillBlankQuestion.getContent()));
 				questionTable.setCorrectAnswer(CorrectAnswerUtil.correctAnswerMergeForTable(fillBlankQuestion.getCorrectAnswer()));
 			}
 			if(question.getType()==Question.MULTI_CHOICE_TYPE) {
 				MultiChoiceQuestion multiChoiceQuestion = (MultiChoiceQuestion)question;
-				
-				System.out.println(question.getType()+" question Service "+multiChoiceQuestion.getQuestionID());
-				//String questionID=(String)multiChoiceQuestion.getQuestionID();
 				questionTable.setQuestionID(multiChoiceQuestion.getQuestionID());
-				
 				questionTable.setContent(multiChoiceQuestion.getQuestionContent());
 				questionTable.setCorrectAnswer(multiChoiceQuestion.getCorrectAnswer());
 			}
-			System.out.println("---->"+questionTable.getQuestionID());
 			questionTableList.add(questionTable);
 		}
 		return questionTableList;
@@ -86,15 +77,15 @@ public class QuestionServiceImpl implements QuestionService{
 	}
 
 	@Override
-	public void addNewFillBlankQuestion(Question question) {
+	public String addNewFillBlankQuestion(Question question, String quizID) {
 		// TODO Auto-generated method stub
-		questionDAO.addFillBlankQuestion(question);
+		return questionDAO.addFillBlankQuestion(question, quizID);
 	}
 
 	@Override
-	public void addNewMultiChoiceQuestion(Question question) {
+	public String addNewMultiChoiceQuestion(Question question, String quizID) {
 		// TODO Auto-generated method stub
-		questionDAO.addMultiChoiceQuestion(question);
+		return questionDAO.addMultiChoiceQuestion(question, quizID);
 	}
 
 	@Override

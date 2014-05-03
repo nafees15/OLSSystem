@@ -97,7 +97,7 @@ document.oncontextmenu=Click;
 		
 		</div>
 		<div id="content">
-		<form action="submitQuizAction">
+		<form action="submitQuizAction" methos="post">
 				<%				
 				int index=1;			
 				List<Map.Entry<String, String>> list = new ArrayList<Map.Entry<String, String>>(questionList.entrySet());		      

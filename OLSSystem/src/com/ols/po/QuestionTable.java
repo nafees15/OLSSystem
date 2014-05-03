@@ -30,8 +30,7 @@ public class QuestionTable implements Serializable{
 	/**
 	 * @param questionID the questionID to set
 	 */
-	public void setQuestionID(String questionID) {
-		System.out.println("Set QuestionID="+questionID);
+	public void setQuestionID(String questionID) {		
 		this.questionID = questionID;
 	}
 	/**

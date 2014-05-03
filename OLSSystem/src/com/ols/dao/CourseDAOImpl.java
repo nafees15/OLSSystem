@@ -94,7 +94,7 @@ public class CourseDAOImpl implements CourseDAO {
 
 		dbc = new DBConnection();
 		connection = dbc.getConnection();
-		
+		System.out.println("----------------"+course.getDescription()+course.getCourseID());
 		try {
 			
 			pstat = connection.prepareStatement(sql);

@@ -46,7 +46,7 @@ public class StuCourseMainAction extends HttpServlet{
 			course =  courseServiceImpl.getCourse(courseID);
 			}
 		
-		request.setAttribute("course", course);
+		httpSession.setAttribute("course", course);
 		httpSession.setAttribute("quizList", arrQuiz);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/student/stuCourseMain.jsp");
 		dispatcher.forward(request, response);

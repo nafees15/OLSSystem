@@ -1,15 +1,10 @@
-	
 <%@page import="com.ols.po.*" %>
 <%Teacher teacher=(Teacher)session.getAttribute("teacher");
-
-
 
 %>
 	<form action="addCourseAction" method="post">	
 		<table>
-			<tr>
-			<td>Teachcer ID:</td><td><input bgcolor="#edf7e8" type="text" name="TeacherID" size=25 value="<%=teacher.getTeacherID()%>" ></td>			
-			</tr>
+			
 			<tr>
 			<td>Course Id:</td><td><input bgcolor="#edf7e8" type="text" name="CourseID" size=25></td>
 			</tr>

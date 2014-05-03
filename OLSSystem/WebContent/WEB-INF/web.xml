@@ -89,7 +89,14 @@
     <servlet-name>EditCourseAction</servlet-name>
     <url-pattern>/editCourse</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+   <servlet-name>SubmitEditCourseAction</servlet-name>
+    <servlet-class>com.ols.action.SubmitEditCourseAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SubmitEditCourseAction</servlet-name>
+    <url-pattern>/submitEditCourse</url-pattern>
+  </servlet-mapping>
   <!-- Quiz -->
     <servlet>
    <servlet-name>AddQuizAction</servlet-name>
@@ -98,6 +105,14 @@
   <servlet-mapping>
     <servlet-name>AddQuizAction</servlet-name>
     <url-pattern>/addQuizAction</url-pattern>
+  </servlet-mapping>
+     <servlet>
+   <servlet-name>SubmitQuizAction</servlet-name>
+    <servlet-class>com.ols.action.SubmitQuizAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SubmitQuizAction</servlet-name>
+    <url-pattern>/submitQuizAction</url-pattern>
   </servlet-mapping>
   <!-- question -->
   <servlet>

@@ -1,6 +1,7 @@
 package com.ols.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.ols.po.*;
 
@@ -10,6 +11,7 @@ import com.ols.po.*;
  */
 
 public interface QuizService {
+public void calculateGrades(HashMap<String, String> submitAnswer, String studentID, String quizID);	
 	
 public ArrayList<Quiz> getQuizByCourseID(String CourseID);
 public Quiz getQuiz(String QuizID);

@@ -16,7 +16,7 @@
 <body>
 
 <%
-Course course=(Course)request.getAttribute("course");
+Course course=(Course)session.getAttribute("course");
 String courseID=course.getCourseID();
 
 ArrayList<Quiz> quizList=new ArrayList<Quiz>();

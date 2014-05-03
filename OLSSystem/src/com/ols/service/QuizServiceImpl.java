@@ -1,6 +1,7 @@
 package com.ols.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.ols.dao.*;
 import com.ols.po.Quiz;
@@ -8,6 +9,9 @@ import com.ols.po.Quiz;
 public class QuizServiceImpl implements QuizService{
 	private QuizDAOImpl quizDAO=new QuizDAOImpl();
 	
+	public void calculateGrades(HashMap<String, String> submitAnswer, String studentID, String quizID) {
+		quizDAO.calculateGrades(submitAnswer, studentID, quizID);
+	}
 	@Override
 	public ArrayList<Quiz> getQuizByCourseID(String CourseID) {
 		// TODO Auto-generated method stub

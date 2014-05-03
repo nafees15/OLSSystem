@@ -9,6 +9,8 @@ import com.ols.po.*;
  */
 
 public interface QuizDAO {
+	public void calculateGrades(HashMap<String, String> submitAnswer, String studentID, String quizID);
+	
 	public Quiz getQuizByQuizID(String QuizID);
 	public void addQuizToCourse(Quiz quiz,String CourseID);
 	public ArrayList<Quiz> getQuizByCourseID(String CourseID);	

@@ -1,10 +1,9 @@
-package com.ols.action;
-
 /**
  * Author Fan Wang by 2014
- * responsible for all 
- * courses list 
+ * responsible for just one
+ * course 
  */
+package com.ols.action;
 
 import java.io.IOException;
 import java.util.*;
@@ -22,7 +21,6 @@ import com.ols.po.Student;
 import com.ols.dao.StudentDAO;
 import com.ols.dao.TeacherDAO;
 import com.ols.service.*;
-import com.ols.service.TeacherService;
 
 public class EditCourseAction extends HttpServlet{
 	
@@ -34,45 +32,16 @@ public class EditCourseAction extends HttpServlet{
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 		HttpSession httpSession = request.getSession();
+
 		
-		Teacher teacher = (Teacher)httpSession.getAttribute("teacher");
+		String courseID = (String) request.getParameter("courseID");
 		
-		String courseID = request.getParameter("CourseID");
-		
-		String courseName = request.getParameter("CourseName");
-		
-		String openSemester = request.getParameter("OpenSemester");
-		int credit = Integer.parseInt(request.getParameter("Credit"));
-		String state = request.getParameter("State");
-		String description = request.getParameter("Description");
-		
-		//Course course = null;
-		ArrayList<Course> arrCourse = new ArrayList<Course>();
 		CourseServiceImpl courseServiceImpl = new CourseServiceImpl(); 
 		
-		arrCourse = courseServiceImpl.getCourseByTeacherID(teacher.getTeacherID());
-		if(arrCourse.size()== 0)
-			System.out.println("empty course list of teacher.");
-		else{
-			for(Course course : arrCourse){
-				if(course.getCourseID().equalsIgnoreCase(courseID)){
-					course.setCourseID(courseID);
-					course.setCourseName(courseName);
-					course.setCredit(credit);
-					course.setOpenSemester(openSemester);
-					course.setState(state);
-					course.setDescription(description);
-					
-					courseServiceImpl.updateCourse(course);
-				}
-			}
-			arrCourse = courseServiceImpl.getCourseByTeacherID(teacher.getTeacherID());
-		}
-		
-		httpSession.setAttribute("CourseList", arrCourse);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/teacher/addCourseTable.jsp");
+		Course course = courseServiceImpl.getCourse(courseID);
+		request.setAttribute("course", course);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/teacher/editCourseTable.jsp");
 		dispatcher.forward(request, response);
 	}
-
 
 }

@@ -15,7 +15,7 @@ public class Question implements Serializable {
 	public static final int MULTI_CHOICE_TYPE=1;
 	public static final int FILL_BLANK_TYPE=2;
 	
-	public String getQustionID() {
+	public String getQuestionID() {
 		return questionID;
 	}
 	public void setQuestionID(String questionID) {
